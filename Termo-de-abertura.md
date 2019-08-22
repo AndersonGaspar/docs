@@ -1,0 +1,43 @@
+**TERMO DE ABERTURA DO PROJETO**
+
+
+
+**Objetivo do projeto**
+
+Desenvolver um aplicativo com ferramental para melhor gestão de tarefas domésticas com foco principal no caso de quando há mais de um morador e há necessidade na divisão das tarefas entre os mesmos.
+
+**Situação atual e justificativa**
+
+A gestão de tarefas domésticas muitas vezes se torna um problema devido a quantidade de responsabilidades que uma pessoa possui, referentes por exemplo, ao trabalho ou estudo, fazendo com que tarefas que são importantes e que precisam ser realizadas em horários específicos, ou que necessitam de rotina, não sejam realizadas, gerando incômodo para o morador, ou no caso de um local compartilhado para os outros moradores também.
+
+**Descrição geral**
+
+Este aplicativo vai ser uma meio para agendar tarefas, registrar eventos, configurar rotinas e interface para negociação e cobrança de tarefas ou débitos, proporcionando uma melhor gestão das tarefas domésticas e evitando incômodos e conflitos entre os moradores do local.
+
+**Equipe do projeto**
+
+Ederson Torresini - Product Owner Guilherme Lopes Roque - Scrum Master e Desenvolvedor Luiza - Desenvolvedor Felipe dos Passos Cardoso - Desenvolvedor
+
+**Partes interessadas**
+
+Ederson Torresini - Professor avaliador do projeto
+
+Equipe - Implementação do projeto
+
+**Restrições**
+
+Alocar tempo para execução do projeto
+
+**Premissas**
+
+Cada membro da equipe disponibilizar 10 horas por semana para dedicação ao projeto
+
+**Riscos**
+
+Aplicativo sem todas as funções definidas 
+
+Falta de alocação de tempo para desenvolver o projeto
+
+**Orçamento**
+
+Não será necessária aquisição de nenhum tipo de equipamentos.
