@@ -4,7 +4,7 @@
 
 **Objetivo do projeto**
 
-Desenvolver um aplicativo com ferramental para melhor gestão de tarefas domésticas com foco principal no caso de quando há mais de um morador e há necessidade na divisão das tarefas entre os mesmos.
+Desenvolver um aplicativo para dispositivos móveis com ferramental para melhor gestão de tarefas domésticas para famílias e pessoas que dividem a residência com foco principal no caso de quando há necessidade na divisão das tarefas entre os mesmos.
 
 **Situação atual e justificativa**
 
@@ -26,7 +26,7 @@ Equipe - Implementação do projeto
 
 **Restrições**
 
-Alocar tempo para execução do projeto
+Não ter tempo livre em comum entre os membros do grupos, complexidade do banco de dados, complexidade de android
 
 **Premissas**
 
@@ -36,8 +36,7 @@ Cada membro da equipe disponibilizar 10 horas por semana para dedicação ao pro
 
 Aplicativo sem todas as funções definidas 
 
-Falta de alocação de tempo para desenvolver o projeto
+Falta de alocação de tempo necessária para o desenvolvimento do projeto
 
 **Orçamento**
-
-Não será necessária aquisição de nenhum tipo de equipamentos.
+Conta de nuvem para armazenar o servidor.
