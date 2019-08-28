@@ -4,7 +4,7 @@
 
 **Objetivo do projeto**
 
-Desenvolver um aplicativo para dispositivos móveis com ferramental para melhor gestão de tarefas domésticas para famílias e pessoas que dividem a residência com foco principal no caso de quando há necessidade na divisão das tarefas entre os mesmos.
+Desenvolver um aplicativo para dispositivos móveis Android com ferramental para melhor gestão de tarefas domésticas para famílias, moradores individuais e pessoas que dividem a residência, com foco principal no caso de quando há necessidade na divisão das tarefas entre os mesmos.
 
 **Situação atual e justificativa**
 
@@ -12,7 +12,7 @@ A gestão de tarefas domésticas muitas vezes se torna um problema devido a quan
 
 **Descrição geral**
 
-Este aplicativo vai ser uma meio para agendar tarefas, registrar eventos, configurar rotinas e interface para negociação e cobrança de tarefas ou débitos, proporcionando uma melhor gestão das tarefas domésticas e evitando incômodos e conflitos entre os moradores do local.
+Este aplicativo vai ser uma meio para agendar tarefas, registrar eventos, configurar rotinas e interface para negociação e cobrança de tarefas ou débitos, proporcionando uma melhor gestão das tarefas domésticas, evitando incômodos e conflitos entre os moradores do local. Haverá também um sistema de pontos que serivirá para gratificar os usuários que realizem as tarefas e também criar perfis individuais que evidencirão os habitos do usuário.
 
 **Equipe do projeto**
 
@@ -26,7 +26,7 @@ Equipe - Implementação do projeto
 
 **Restrições**
 
-Não ter tempo livre em comum entre os membros do grupos, complexidade do banco de dados, complexidade de android
+Não ter tempo livre suficiente em comum entre os membros do grupos, complexidade do desenvolvimento
 
 **Premissas**
 
@@ -34,7 +34,7 @@ Cada membro da equipe disponibilizar 10 horas por semana para dedicação ao pro
 
 **Riscos**
 
-Aplicativo sem todas as funções definidas 
+Aplicativo sem todas as funções entregues 
 
 Falta de alocação de tempo necessária para o desenvolvimento do projeto
 
