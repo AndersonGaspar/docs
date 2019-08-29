@@ -10,7 +10,7 @@ A gestão de tarefas domésticas muitas vezes se torna um problema devido a quan
 
 ### Descrição geral
 
-Este aplicativo será uma meio para agendar tarefas, registrar eventos, configurar rotinas e interface para negociação e cobrança de tarefas ou débitos, proporcionando uma melhor gestão das tarefas domésticas, evitando incômodos e conflitos entre os moradores do local. Haverá também um sistema de pontos que servirá para gratificar os usuários que realizarem as tarefas e também perfis individuais que evidenciarão os hábitos do usuário.
+Este aplicativo será uma meio para agendar tarefas, registrar eventos, configurar rotinas e interface para negociação e cobrança de tarefas ou débitos, proporcionando uma melhor gestão das tarefas domésticas, evitando incômodos e conflitos entre os moradores do local. Haverá também um sistema de pontos que servirá para gratificar os usuários que realizarem as tarefas e também criar perfis individuais que evidenciarão os hábitos do usuário.
 
 ### Equipe do projeto
 
