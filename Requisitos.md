@@ -4,6 +4,7 @@
 > Sistema de pontuação baseado na execução das tarefas;
 
 > Registrar gratificações ou cobranças;
+
 > Notificação de tarefas programadas;
 
 > Configuração de rotinas;
@@ -14,9 +15,14 @@
 
 ### Requisitos não funcionais: ###
 
-Android acima de uma determinada versão;
+> Android acima de uma determinada versão;
+
+> O aplicativo deve funcionar na perspectiva vertical e horizontal;
+
+> O cliente deve estar conectado na internet.
 
 #### Regras de negócio: ####
+
 > Só pode pontuar membros da mesma residência;
 
 > Ações limitadas em perfis infantis;
