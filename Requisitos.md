@@ -1,32 +1,50 @@
-* ## Levantamento de requisitos: ##
-### Requisitos funcionais: ###
+## Levantamento de requisitos: ##
+### Requisitos Funcionais (RF): ###
 
-> Sistema de pontuação baseado na execução das tarefas;
+**RF.01 -** Permitir Registro e Autenticação do Usuário;
 
-> Registrar gratificações ou cobranças;
+**RF.02 -** Alterar dados do Usuário;
 
-> Notificação de tarefas programadas;
+**RF.03 -** Cadastrar, Editar e Excluir Tarefas;
 
-> Configuração de rotinas;
+**RF.04 -** Cadastrar notificação para Tarefas programadas;
 
-> Pesquisar usuários e ver suas pontuações;
+**RF.05 -** Iniciar, Pausar e Finalizar a execução de Tarefas;
 
-> Cadastrar atividades.
+**RF.06 -** Inserir Grupo/Residência;
 
-### Requisitos não funcionais: ###
+**RF.07 -** Pesquisar Usuários e visualizar informações (Como pontuação, por exemplo);
 
-> Android acima de uma determinada versão;
+**RF.08 -** Adicionar Usuários ao Grupo;
 
-> O aplicativo deve funcionar na perspectiva vertical e horizontal;
+**RF.09 -** Associar Tarefas aos Usuários do Grupo (Definindo Executores);
 
-> O cliente deve estar conectado na internet.
+**RF.10 -** Permitir confirmação e pontuação das Tarefas executadas pelo Grupo;
 
-#### Regras de negócio: ####
+**RF.11 -** Registrar gratificações ou cobranças.
 
-> Só pode pontuar membros da mesma residência;
+### Requisitos não funcionais (RNF): ###
 
-> Ações limitadas em perfis infantis;
+**RNF.01 -** Android acima de uma determinada versão;
 
-> Tempo mínimo para cobrança de tarefas;
+**RNF.02 -** O aplicativo deve funcionar na perspectiva vertical e horizontal;
 
-> As regras configuradas por um morador tem que ser aceita por todos os outros para ter validade.
+**RNF.03 -** O Usuário deve estar conectado à internet.
+
+#### Regras de negócio (RN): ####
+
+**RN.01 -** Somente o Usuário poderá alterar seus dados;
+
+**RN.02 -** Somente o Criador poderá excluir a tarefa;
+
+**RN.03 -** Somente o Executor poderá Iniciar, Pausar e Finalizar a tarefa;
+
+**RN.04 -** A finalização da execução de uma tarefa só será confirmada com aprovação de todos os membros do Grupo.
+
+**RN.05 -** O Usuário só poderá pontuar membros do mesmo Grupo/Residência
+
+**RN.06 -** Ações limitadas em perfis infantis;
+
+**RN.07 -** Tempo mínimo para cobrança de tarefas;
+
+**RN.08 -** As regras configuradas por um morador tem que ser aceita por todos os outros para ter validade.
