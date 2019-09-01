@@ -35,7 +35,7 @@
 
 **RN.01 -** Somente o Usuário poderá alterar seus dados;
 
-**RN.02 -** Somente o Criador poderá excluir a tarefa;
+**RN.02 -** A tarefa só poderá ser excluída após consentimento dos Usuários do Grupo.
 
 **RN.03 -** Somente o Executor poderá Iniciar, Pausar e Finalizar a tarefa;
 
@@ -47,4 +47,4 @@
 
 **RN.07 -** Tempo mínimo para cobrança de tarefas;
 
-**RN.08 -** As regras configuradas por um morador tem que ser aceita por todos os outros para ter validade.
+**RN.08 -** As regras configuradas por um usuário só terão validade se demais membros do grupo aceitarem.

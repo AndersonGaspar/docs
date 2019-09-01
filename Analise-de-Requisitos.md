@@ -130,22 +130,146 @@
 * **Ator Primário:** Usuário
 * **Ator Secundário:** Servidor
 
-* **Resumo:** Exclusão de tarefa pelo USUÁRIO
+* **Resumo:** Solicitação de exclusão da tarefa pelo USUÁRIO
 
 * **Fluxo Principal:** 
   
         1. Na tela principal, USUÁRIO clica na tarefa que deseja excluir;
         2. Sistema apresenta tela de informações da tarefa;
-        3. USUÁRIO clica no botão flutuante Excluir (Opção disponível somente se USUÁRIO for Criador da tarefa);
+        3. USUÁRIO clica no botão flutuante Excluir
         4. Sistema apresenta notificação sobre Exclusão da tarefa;
-        5. USUÁRIO clica em Confirmar para excluir tarefa;
-        6. Sistema envia solicitação de exclusão de tarefa para o SERVIDOR;
-        7. SERVIDOR executa exclusão da tarefa no Banco de Dados e retorna resultado;
-        8. Sistema apresenta confirmação e retorna para tela principal;
+        5. USUÁRIO clica em enviar solicitação de exclusão da tarefa;
+        6. Sistema envia solicitação de exclusão da tarefa para o SERVIDOR
+        7. Sistema apresenta tela de informações da tarefa com status, exclusão pedentente.
     
 * **Exceções:**
   
-  * Se a exclusão do banco de dados retornar erro, sistema apresenta resultado e o fluxo retorna para item 2.
+  * Se a exclusão não for confirmada pelos membros do grupo, a tarefa volta a ficar com status ativa - ver caso de uso **Confirmar Exclusão da Tarefa**.
 
 ***
+**7. Caso de Uso: Confirmar Exclusão da Tarefa**
 
+* **Ator Primário:** Servidor
+
+* **Ator Secundário:** Usuário
+
+* **Resumo:** Confirmar solicitação de exclusão da tarefa de outro USUÁRIO
+
+* **Fluxo Principal:** 
+  
+        1. SERVIDOR recebe solicitação de exclusão da tarefa;
+        2. SERVIDOR registra no banco de dados status de exclusão pendente para a tarefa;
+        3. SERVIDOR envia notificação para Sistema dos demais usuários solicitando confirmação de exclusão da tarefa;
+        4. Sistema apresenta notificação da solicitação de exclusão ao USUÁRIO;
+        5. USUÁRIO confirma solicitação de exclusão;
+        6. Sistema envia confirmação da exclusão para o SERVIDOR;
+        7. SERVIDOR verifica se os demais membros já confirmaram;
+        8. SERVIDOR executa a exclusão da tarefa do banco de dados;
+        9. SERVIDOR envia ao sistema do usuário solicitante a confirmação da exclusão;
+        10. Sistema apresenta notificação ao usuário solicitante.
+    
+* **Exceções:**
+  
+  * Se no item 7, os membros optarem por negar a exclusão, o seguinte fluxo é executado:
+  
+  ```
+  8. SERVIDOR altera no banco de dados status da tarefa para ativa;
+  9. SERVIDOR envia ao sistema do usuário solicitante a negação da exclusão;
+  10. Sistema apresenta notificação ao usuário solicitante;
+  ```
+***
+**8. Caso de Uso: Iniciar execução da Tarefa**
+
+* **Ator Primário:** Usuário
+
+* **Ator Secundário:** Servidor
+
+* **Resumo:** Registrar inicio de execução da tarefa
+
+* **Fluxo Principal:** 
+
+  ```
+  1. Na tela principal, USUÁRIO clica na tarefa que deseja iniciar;
+  2. Sistema apresenta tela de informações da tarefa;
+  3. USUÁRIO clica no botão iniciar;
+  4. Sistema apresenta notificação de início da execução da tarefa;
+  5. Sistema envia para SERVIDOR alteração de status e informações da execução da tarefa;
+  6. SERVIDOR registra alterações no banco de dados;
+  7. Sistema apresenta tela de informações da tarefa com status em andamento e habilita botões de pausa e finalização da execução da tarefa;
+  ```
+***
+**9. Caso de Uso: Pausar execução da Tarefa**
+
+* **Ator Primário:** Usuário
+
+* **Ator Secundário:** Servidor
+
+* **Resumo:** Registrar pausa de execução da tarefa
+
+* **Fluxo Principal:** 
+
+  ```
+  1. Na tela principal, USUÁRIO clica na tarefa que deseja pausar;
+  2. Sistema apresenta tela de informações da tarefa;
+  3. USUÁRIO clica no botão pausar;
+  4. Sistema apresenta notificação de pausa da execução da tarefa;
+  5. Sistema envia para SERVIDOR alteração de status e informações da execução da tarefa;
+  6. SERVIDOR registra alterações no banco de dados;
+  7. Sistema apresenta tela de informações da tarefa com status pausada e habilita botões de reinício e finalização da execução da tarefa;
+  ```
+***
+**10. Caso de Uso: Finalizar execução da Tarefa**
+
+* **Ator Primário:** Usuário
+
+* **Ator Secundário:** Servidor
+
+* **Resumo:** Registrar finalização de execução da tarefa
+
+* **Fluxo Principal:** 
+
+  ```
+  1. Na tela principal, USUÁRIO clica na tarefa que deseja pausar;
+  2. Sistema apresenta tela de informações da tarefa;
+  3. USUÁRIO clica no botão finalizar;
+  4. Sistema apresenta notificação de finalização da execução da tarefa;
+  5. Sistema envia para SERVIDOR solicitação para confirmação da finalização;
+  6. Sistema apresenta tela de informações da tarefa com status finalização pendente;
+  ```
+  
+* **Exceções:**
+  
+  * Se a finalização não for confirmada pelos membros do grupo, a tarefa fica com status finalização rejeitada - ver caso de uso **Confirmar Finalização da Tarefa**.
+***
+**11. Caso de Uso: Confirmar Finalização da Tarefa**
+
+* **Ator Primário:** Servidor
+
+* **Ator Secundário:** Usuário
+
+* **Resumo:** Confirmar solicitação de finalização da tarefa de outro USUÁRIO
+
+* **Fluxo Principal:** 
+  
+        1. SERVIDOR recebe solicitação de finalziação da tarefa;
+        2. SERVIDOR registra no banco de dados status de finalziação pendente para a tarefa;
+        3. SERVIDOR envia notificação para Sistema dos demais usuários solicitando confirmação de finalização da tarefa;
+        4. Sistema apresenta notificação da solicitação de finalziação ao USUÁRIO;
+        5. USUÁRIO confirma solicitação de finalização;
+        6. Sistema envia confirmação da finalização para o SERVIDOR;
+        7. SERVIDOR verifica se os demais membros já confirmaram;
+        8. SERVIDOR altera status da tarefa para finalizada no banco de dados;
+        9. SERVIDOR envia ao sistema do usuário solicitante a confirmação da finalização;
+        10. Sistema apresenta notificação ao usuário solicitante.
+    
+* **Exceções:**
+  
+  * Se no item 7, os membros optarem por negar a finalziação, o seguinte fluxo é executado:
+  
+  ```
+  8. SERVIDOR altera no banco de dados status da tarefa para finalização rejeitada;
+  9. SERVIDOR envia ao sistema do usuário solicitante a rejeição da finalziação;
+  10. Sistema apresenta notificação ao usuário solicitante;
+  ```
+
+***
