@@ -5,27 +5,25 @@
 
 **RF.02 -** Alterar dados do Usuário;
 
-**RF.03 -** Cadastrar, Editar e Excluir Tarefas;
+**RF.03 -** Cadastrar, editar e finalizar tarefas;
 
-**RF.04 -** Cadastrar notificação para Tarefas programadas;
+**RF.04 -** Cadastrar rotinas;
 
-**RF.05 -** Iniciar, Pausar e Finalizar a execução de Tarefas;
+**RF.05 -** Gerar notificação para tarefas programadas;
 
-**RF.06 -** Inserir Grupo/Residência;
+**RF.06 -** Cadastrar Grupo/Residência;
 
-**RF.07 -** Pesquisar Usuários e visualizar informações (Como pontuação, por exemplo);
+**RF.07 -** Adicionar Usuários ao Grupo;
 
-**RF.08 -** Adicionar Usuários ao Grupo;
+**RF.08 -** Pesquisar Usuários e visualizar informações (Como pontuação, por exemplo);
 
-**RF.09 -** Associar Tarefas aos Usuários do Grupo (Definindo Executores);
+**RF.09 -** Permitir confirmação e pontuação das Tarefas executadas pelo Grupo;
 
-**RF.10 -** Permitir confirmação e pontuação das Tarefas executadas pelo Grupo;
-
-**RF.11 -** Registrar gratificações ou cobranças.
+**RF.10 -** Registrar gratificações ou cobranças.
 
 ### Requisitos não funcionais (RNF): ###
 
-**RNF.01 -** Android acima de uma determinada versão;
+**RNF.01 -** Android acima da versão 6.0;
 
 **RNF.02 -** O aplicativo deve funcionar na perspectiva vertical e horizontal;
 
@@ -35,16 +33,16 @@
 
 **RN.01 -** Somente o Usuário poderá alterar seus dados;
 
-**RN.02 -** A tarefa só poderá ser excluída após consentimento dos Usuários do Grupo.
+**RN.02 -** A tarefa só poderá ser avaliada pelos Usuários do Grupo.
 
-**RN.03 -** Somente o Executor poderá Iniciar, Pausar e Finalizar a tarefa;
+**RN.03 -** Somente o Executor poderá finalizar a tarefa;
 
-**RN.04 -** A finalização da execução de uma tarefa só será confirmada com aprovação de todos os membros do Grupo.
+**RN.04 -** A avaliação da tarefa só poderá ser feita dentro de um determinado período após a finalização.
 
-**RN.05 -** O Usuário só poderá pontuar membros do mesmo Grupo/Residência
+**RN.05 -** Quando período de validade da tarefa expirar a mesma será dada como finalizada.
 
-**RN.06 -** Ações limitadas em perfis infantis;
+**RN.06 -** O Usuário só poderá pontuar membros do mesmo Grupo/Residência.
 
-**RN.07 -** Tempo mínimo para cobrança de tarefas;
+**RN.07 -** Ações limitadas em perfis infantis;
 
 **RN.08 -** As regras configuradas por um usuário só terão validade se demais membros do grupo aceitarem.
