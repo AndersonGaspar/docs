@@ -125,7 +125,7 @@
 
 ***
 
-**6. Caso de Uso: Excluir Tarefa**
+**6. Caso de Uso: Finalizar Tarefa**
 
 * **Ator Primário:** Usuário
 * **Ator Secundário:** Servidor
@@ -134,142 +134,64 @@
 
 * **Fluxo Principal:** 
   
-        1. Na tela principal, USUÁRIO clica na tarefa que deseja excluir;
+        1. Na tela principal, USUÁRIO clica na tarefa que deseja finalizar;
         2. Sistema apresenta tela de informações da tarefa;
-        3. USUÁRIO clica no botão flutuante Excluir
-        4. Sistema apresenta notificação sobre Exclusão da tarefa;
-        5. USUÁRIO clica em enviar solicitação de exclusão da tarefa;
-        6. Sistema envia solicitação de exclusão da tarefa para o SERVIDOR
-        7. Sistema apresenta tela de informações da tarefa com status, exclusão pedentente.
-    
-* **Exceções:**
-  
-  * Se a exclusão não for confirmada pelos membros do grupo, a tarefa volta a ficar com status ativa - ver caso de uso **Confirmar Exclusão da Tarefa**.
-
+        3. USUÁRIO clica no botão flutuante Finalizar;
+        6. Sistema envia solicitação de finalização da tarefa para o SERVIDOR;
+        4. Sistema apresenta notificação sobre finalização da tarefa;
+        5. SERVIDOR atualiza o estado da tarefa de "Aberta" para "Finalizada"; 
+        7. Sistema volta para a tela principal.
 ***
-**7. Caso de Uso: Confirmar Exclusão da Tarefa**
 
-* **Ator Primário:** Servidor
-
-* **Ator Secundário:** Usuário
-
-* **Resumo:** Confirmar solicitação de exclusão da tarefa de outro USUÁRIO
-
-* **Fluxo Principal:** 
-  
-        1. SERVIDOR recebe solicitação de exclusão da tarefa;
-        2. SERVIDOR registra no banco de dados status de exclusão pendente para a tarefa;
-        3. SERVIDOR envia notificação para Sistema dos demais usuários solicitando confirmação de exclusão da tarefa;
-        4. Sistema apresenta notificação da solicitação de exclusão ao USUÁRIO;
-        5. USUÁRIO confirma solicitação de exclusão;
-        6. Sistema envia confirmação da exclusão para o SERVIDOR;
-        7. SERVIDOR verifica se os demais membros já confirmaram;
-        8. SERVIDOR executa a exclusão da tarefa do banco de dados;
-        9. SERVIDOR envia ao sistema do usuário solicitante a confirmação da exclusão;
-        10. Sistema apresenta notificação ao usuário solicitante.
-    
-* **Exceções:**
-  
-  * Se no item 7, os membros optarem por negar a exclusão, o seguinte fluxo é executado:
-  
-  ```
-  8. SERVIDOR altera no banco de dados status da tarefa para ativa;
-  9. SERVIDOR envia ao sistema do usuário solicitante a negação da exclusão;
-  10. Sistema apresenta notificação ao usuário solicitante;
-  ```
-***
-**8. Caso de Uso: Iniciar execução da Tarefa**
+**7. Caso de Uso: Configurar Rotina**
 
 * **Ator Primário:** Usuário
-
 * **Ator Secundário:** Servidor
 
-* **Resumo:** Registrar inicio de execução da tarefa
+* **Resumo:** Configuração de rotina pelo USUÁRIO
 
 * **Fluxo Principal:** 
-
-  ```
-  1. Na tela principal, USUÁRIO clica na tarefa que deseja iniciar;
-  2. Sistema apresenta tela de informações da tarefa;
-  3. USUÁRIO clica no botão iniciar;
-  4. Sistema apresenta notificação de início da execução da tarefa;
-  5. Sistema envia para SERVIDOR alteração de status e informações da execução da tarefa;
-  6. SERVIDOR registra alterações no banco de dados;
-  7. Sistema apresenta tela de informações da tarefa com status em andamento e habilita botões de pausa e finalização da execução da tarefa;
-  ```
-***
-**9. Caso de Uso: Pausar execução da Tarefa**
-
-* **Ator Primário:** Usuário
-
-* **Ator Secundário:** Servidor
-
-* **Resumo:** Registrar pausa de execução da tarefa
-
-* **Fluxo Principal:** 
-
-  ```
-  1. Na tela principal, USUÁRIO clica na tarefa que deseja pausar;
-  2. Sistema apresenta tela de informações da tarefa;
-  3. USUÁRIO clica no botão pausar;
-  4. Sistema apresenta notificação de pausa da execução da tarefa;
-  5. Sistema envia para SERVIDOR alteração de status e informações da execução da tarefa;
-  6. SERVIDOR registra alterações no banco de dados;
-  7. Sistema apresenta tela de informações da tarefa com status pausada e habilita botões de reinício e finalização da execução da tarefa;
-  ```
-***
-**10. Caso de Uso: Finalizar execução da Tarefa**
-
-* **Ator Primário:** Usuário
-
-* **Ator Secundário:** Servidor
-
-* **Resumo:** Registrar finalização de execução da tarefa
-
-* **Fluxo Principal:** 
-
-  ```
-  1. Na tela principal, USUÁRIO clica na tarefa que deseja pausar;
-  2. Sistema apresenta tela de informações da tarefa;
-  3. USUÁRIO clica no botão finalizar;
-  4. Sistema apresenta notificação de finalização da execução da tarefa;
-  5. Sistema envia para SERVIDOR solicitação para confirmação da finalização;
-  6. Sistema apresenta tela de informações da tarefa com status finalização pendente;
-  ```
   
+        1. Na tela principal, USUÁRIO clica no menu e seleciona a opção rotinas;
+        2. Sistema apresenta tela com as rotinas que envolvem o usuário;
+        3. USUÁRIO clica no na opção Criar/Editar;
+        4. Sistema apresenta as opções de configuração da rotina;
+        5. USUÁRIO configura a rotina e clica em Aplicar;
+        6. Sistema faz uma validação inicial da configuração e envia as configurações para o SERVIDOR;        
+        7. SERVIDOR valida as configurações recebidas e atualiza ou cria a rotina;
+        8. SERVIDOR envia uma notificação de sucesso para o USUÁRIO; 
+        9. Sistema retorna para a tela de rotinas.
+        
 * **Exceções:**
   
-  * Se a finalização não for confirmada pelos membros do grupo, a tarefa fica com status finalização rejeitada - ver caso de uso **Confirmar Finalização da Tarefa**.
+  * Se a validação dos campos no item 6 não tiver sucesso será evidenciado o campo com entrada inválida e o sistema continuará neste item.
+  * Se a validação dos campos no item 7 não tiver sucesso será retornado uma mensagem de falha para o usuário e o sistema retornará para o item 4.
 ***
-**11. Caso de Uso: Confirmar Finalização da Tarefa**
 
-* **Ator Primário:** Servidor
 
-* **Ator Secundário:** Usuário
+**8. Caso de Uso: Registrar local**
 
-* **Resumo:** Confirmar solicitação de finalização da tarefa de outro USUÁRIO
+* **Ator Primário:** Usuário
+* **Ator Secundário:** Servidor
+
+* **Resumo:** Configuração de rotina pelo USUÁRIO
 
 * **Fluxo Principal:** 
   
-        1. SERVIDOR recebe solicitação de finalziação da tarefa;
-        2. SERVIDOR registra no banco de dados status de finalziação pendente para a tarefa;
-        3. SERVIDOR envia notificação para Sistema dos demais usuários solicitando confirmação de finalização da tarefa;
-        4. Sistema apresenta notificação da solicitação de finalziação ao USUÁRIO;
-        5. USUÁRIO confirma solicitação de finalização;
-        6. Sistema envia confirmação da finalização para o SERVIDOR;
-        7. SERVIDOR verifica se os demais membros já confirmaram;
-        8. SERVIDOR altera status da tarefa para finalizada no banco de dados;
-        9. SERVIDOR envia ao sistema do usuário solicitante a confirmação da finalização;
-        10. Sistema apresenta notificação ao usuário solicitante.
-    
+        1. Na tela principal, USUÁRIO clica no menu e seleciona a Casa;
+        2. Sistema apresenta tela com as rotinas que envolvem o usuário;
+        3. USUÁRIO clica no na opção Criar/Editar;
+        4. Sistema apresenta as opções de configuração da rotina;
+        5. USUÁRIO configura a rotina e clica em Aplicar;
+        6. Sistema faz uma validação inicial da configuração e envia as configurações para o SERVIDOR;        
+        7. SERVIDOR valida as configurações recebidas e atualiza ou cria a rotina;
+        8. SERVIDOR envia uma notificação de sucesso para o USUÁRIO; 
+        9. Sistema retorna para a tela de rotinas.
+        
 * **Exceções:**
   
-  * Se no item 7, os membros optarem por negar a finalziação, o seguinte fluxo é executado:
-  
-  ```
-  8. SERVIDOR altera no banco de dados status da tarefa para finalização rejeitada;
-  9. SERVIDOR envia ao sistema do usuário solicitante a rejeição da finalziação;
-  10. Sistema apresenta notificação ao usuário solicitante;
-  ```
-
+  * Se a validação dos campos no item 6 não tiver sucesso será evidenciado o campo com entrada inválida e o sistema continuará neste item.
+  * Se a validação dos campos no item 7 não tiver sucesso será retornado uma mensagem de falha para o usuário e o sistema retornará para o item 4.
 ***
+
+
