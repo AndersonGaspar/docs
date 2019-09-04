@@ -20,7 +20,7 @@
   5. Sistema executa validações dos campos (cpf, e-mail, datas, etc.);
   6. Sistema envia solicitação de registro para SERVIDOR;
   7. SERVIDOR verifica se não existe USUÁRIO com mesma identificação;
-  8. SERVIDOR grava resgistro no Banco de dados e retorna resultado;
+  8. SERVIDOR grava registro no Banco de dados e retorna resultado;
   9. Sistema confirma registro para o USUÁRIO e apresenta tela de Login.
   ```
 
@@ -74,8 +74,27 @@
 * **Exceções:**
   
   * Se a validação dos campos no item 6 não ocorrer com sucesso, sistema apresenta resultado negativo e fluxo retorna para item 4.
-
 ***
+
+**9. Caso de Uso: Visualizar Perfil**
+
+* **Ator Primário:** Usuário
+* **Ator Secundário:** Servidor
+
+* **Resumo:** Visualização de perfil pelo USUÁRIO
+
+* **Fluxo Principal:** 
+  
+        1. Na tela principal, USUÁRIO clica no menu e seleciona a opção perfil;
+        2. Sistema envia o pedido das informações do perfil registrado para o SERVIDOR;
+        3. SERVIDOR envia as informações sobre o perfil para o Sistema; 
+        4. Sistema apresenta tela com as informações do perfil do usuário;
+        
+* **Exceções:**
+  
+* Se a validação dos campos no item 3 não ocorrer com sucesso, sistema apresenta resultado negativo e o fluxo retorna para o item 1.
+***
+
 
 **4. Caso de Uso: Cadastrar Tarefa**
 
@@ -125,25 +144,52 @@
 
 ***
 
-**6. Caso de Uso: Finalizar Tarefa**
+**6. Caso de Uso: Pontuar Tarefa**
 
 * **Ator Primário:** Usuário
 * **Ator Secundário:** Servidor
 
-* **Resumo:** Solicitação de exclusão da tarefa pelo USUÁRIO
+* **Resumo:** Pontuação de tarefa pelo USUÁRIO
+
+* **Fluxo Principal:** 
+  
+        1. Na tela principal, o sistema apresenta tela de tarefas para avaliação;
+        2. USUÁRIO clica no botão flutuante Feito/Não Feito de determinada tarefa;
+        3. Sistema executa validação do campo;
+        4. Sistema envia solicitação de alteração de tarefa para o SERVIDOR;
+        5. SERVIDOR executa gravação da alteração no Banco de Dados e retorna resultado;
+        6. Sistema apresenta confirmação e retorna para tela de informações da tarefa;
+    
+* **Exceções:**
+  
+  * Se a validação dos campos não ocorrer com sucesso ou gravação da tarefa no banco de dados retornar erro, sistema apresenta resultado negativo e fluxo retorna para item 1.
+
+***
+
+**7. Caso de Uso: Finalizar Tarefa**
+
+* **Ator Primário:** Usuário
+* **Ator Secundário:** Servidor
+
+* **Resumo:** Solicitação de exclusão/conclusão da tarefa pelo USUÁRIO
 
 * **Fluxo Principal:** 
   
         1. Na tela principal, USUÁRIO clica na tarefa que deseja finalizar;
         2. Sistema apresenta tela de informações da tarefa;
         3. USUÁRIO clica no botão flutuante Finalizar;
-        6. Sistema envia solicitação de finalização da tarefa para o SERVIDOR;
-        4. Sistema apresenta notificação sobre finalização da tarefa;
-        5. SERVIDOR atualiza o estado da tarefa de "Aberta" para "Finalizada"; 
+        4. Sistema envia solicitação de finalização da tarefa para o SERVIDOR;
+        5. Sistema apresenta notificação sobre finalização da tarefa;
+        6. SERVIDOR atualiza o estado da tarefa de "Aberta" para "Finalizada"; 
         7. Sistema volta para a tela principal.
+
+* **Exceções:**
+  
+  * Se a validação dos campos não ocorrer com sucesso ou gravação da tarefa no banco de dados retornar erro, sistema apresenta resultado negativo e fluxo retorna para item 2.
+
 ***
 
-**7. Caso de Uso: Configurar Rotina**
+**8. Caso de Uso: Configurar Rotina**
 
 * **Ator Primário:** Usuário
 * **Ator Secundário:** Servidor
@@ -168,13 +214,33 @@
   * Se a validação dos campos no item 7 não tiver sucesso será retornado uma mensagem de falha para o usuário e o sistema retornará para o item 4.
 ***
 
-
-**8. Caso de Uso: Configurar local**
+**9. Caso de Uso: Visualizar Rotina**
 
 * **Ator Primário:** Usuário
 * **Ator Secundário:** Servidor
 
-* **Resumo:** Configuração de rotina pelo USUÁRIO
+* **Resumo:** Visualização de rotina pelo USUÁRIO
+
+* **Fluxo Principal:** 
+  
+        1. Na tela principal, USUÁRIO clica no menu e seleciona a opção rotinas;
+        2. Sistema envia o pedido das rotinas registradas para o SERVIDOR;
+        3. SERVIDOR envia as informações sobre as rotinas para o Sistema; 
+        4. Sistema apresenta tela com as rotinas que envolvem o usuário;
+        5. USUÁRIO clica na rotina que deseja visualizar detalhadamente;
+        6. Sistema apresenta as informações da rotina;
+        
+* **Exceções:**
+  
+* Se a validação dos campos no item 3 não ocorrer com sucesso, sistema apresenta resultado negativo.
+***
+
+**10. Caso de Uso: Configurar Grupo/Residencia**
+
+* **Ator Primário:** Usuário
+* **Ator Secundário:** Servidor
+
+* **Resumo:** Configuração de Grupo/Residencia pelo USUÁRIO
 
 * **Fluxo Principal:** 
   
@@ -190,6 +256,25 @@
    
    * Se a validação dos campos no item 4 não tiver sucesso será evidenciado o campo com entrada inválida e o sistema continuará neste item.
   * Se a validação dos campos no item 7 não tiver sucesso será retornado uma mensagem de falha para o usuário e o sistema retornará para o item 2.
+***
+
+**10. Caso de Uso: Visualizar Grupo/Residencia**
+
+* **Ator Primário:** Usuário
+* **Ator Secundário:** Servidor
+
+* **Resumo:** Visualização de Grupo/Residencia pelo USUÁRIO
+
+* **Fluxo Principal:** 
+  
+        1. Na tela principal, USUÁRIO clica no menu e seleciona a Casa;
+        2. Sistema faz um pedido das informações do Grupo/Residencia para o SERVIDOR;        
+        3. SERVIDOR envia as atualizações do Grupo/Residencia;
+        4. Sistema apresenta tela com as possíveis configurações da Casa;
+        
+* **Exceções:**
+   
+   * Se a validação dos campos no item 3 não tiver sucesso, o sistema retorna um erro e continuará neste item.
 ***
 
 
@@ -214,3 +299,46 @@
    * Se a consulta realizada pelo servidor não tiver resutltados será retornado para o sistema uma mensagem de erro.
 ***
 
+**4. Caso de Uso: Cadastrar membros para Grupo/Residencia**
+
+* **Ator Primário:** Usuário
+* **Ator Secundário:** Servidor
+
+* **Resumo:** Cadastro de Membros para Grupo/Residencia pelo USUÁRIO
+
+* **Fluxo Principal:** 
+  
+        1. Na tela principal, USUÁRIO clica no menu e seleciona a Casa;
+        2. Sistema apresenta tela com as possíveis configurações da Casa e exibe a opção visualizar Membros;
+        3. USUÁRIO clica na opção visualizar membros;
+        4. Sistema apresenta tela com os possíveis membros da Casa e exibe a opção adicionar um novo membro;
+        5. USUÁRIO clica na opção adicionar um novo membro e digita o usuario a ser adicionado;
+        6. Sistema faz um pedido de convite do membro para determinado Grupo/Residencia para o SERVIDOR;
+        7. Servidor faz uma consulta no banco de dados e retorna o resultado para o sistema;
+        8. Sistema exibe as informações para o usuário;
+    
+* **Exceções:**
+  
+  * Se a consulta realizada pelo servidor não tiver resutltados será retornado para o sistema uma mensagem de erro.
+***
+
+**10. Caso de Uso: Visualizar membros para Grupo/Residencia**
+
+* **Ator Primário:** Usuário
+* **Ator Secundário:** Servidor
+
+* **Resumo:** Visualização de Grupo/Residencia pelo USUÁRIO
+
+* **Fluxo Principal:** 
+  
+        1. Na tela principal, USUÁRIO clica no menu e seleciona a Casa;
+        2. Sistema apresenta tela com as possíveis configurações da Casa e exibe a opção visualizar Membros;
+        3. USUÁRIO clica na opção;
+        4. Sistema faz um pedido das informações dos membros de determinado Grupo/Residencia para o SERVIDOR;        
+        5. SERVIDOR envia as atualizações dos membros da casa;
+        6. Sistema apresenta tela com os possíveis membros da Casa;
+        
+* **Exceções:**
+   
+   * Se a consulta realizada pelo servidor não tiver resutltados será retornado para o sistema uma mensagem de erro.
+***
