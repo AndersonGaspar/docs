@@ -169,7 +169,7 @@
 ***
 
 
-**8. Caso de Uso: Registrar local**
+**8. Caso de Uso: Configurar local**
 
 * **Ator Primário:** Usuário
 * **Ator Secundário:** Servidor
@@ -179,19 +179,38 @@
 * **Fluxo Principal:** 
   
         1. Na tela principal, USUÁRIO clica no menu e seleciona a Casa;
-        2. Sistema apresenta tela com as rotinas que envolvem o usuário;
-        3. USUÁRIO clica no na opção Criar/Editar;
-        4. Sistema apresenta as opções de configuração da rotina;
-        5. USUÁRIO configura a rotina e clica em Aplicar;
-        6. Sistema faz uma validação inicial da configuração e envia as configurações para o SERVIDOR;        
-        7. SERVIDOR valida as configurações recebidas e atualiza ou cria a rotina;
-        8. SERVIDOR envia uma notificação de sucesso para o USUÁRIO; 
-        9. Sistema retorna para a tela de rotinas.
+        2. Sistema apresenta tela com as possíveis configurações da Casa;
+        3. USUÁRIO edita as configurações e clica em Aplicar;
+        4. Sistema faz uma validação inicial da configuração e envia as configurações para o SERVIDOR;        
+        5. SERVIDOR valida as configurações recebidas e atualiza o registro da casa;
+        6. SERVIDOR envia uma notificação de sucesso para o USUÁRIO;
+        7. Sistema apresenta tela com as possíveis configurações da Casa;
         
 * **Exceções:**
-  
-  * Se a validação dos campos no item 6 não tiver sucesso será evidenciado o campo com entrada inválida e o sistema continuará neste item.
-  * Se a validação dos campos no item 7 não tiver sucesso será retornado uma mensagem de falha para o usuário e o sistema retornará para o item 4.
+   
+   * Se a validação dos campos no item 4 não tiver sucesso será evidenciado o campo com entrada inválida e o sistema continuará neste item.
+  * Se a validação dos campos no item 7 não tiver sucesso será retornado uma mensagem de falha para o usuário e o sistema retornará para o item 2.
 ***
 
+
+**9. Caso de Uso: Pesquisar Usuário**
+
+* **Ator Primário:** Usuário
+* **Ator Secundário:** Servidor
+
+* **Resumo:** Configuração de rotina pelo USUÁRIO
+
+* **Fluxo Principal:** 
+  
+        1. Na tela principal, USUÁRIO clica no menu e seleciona a opção perfil;
+        2. Sistema apresenta tela com informações de perfil do USUÁRIO;
+        3. USUÁRIO escreve o nome de um perfil no campo Buscar e clica na opção;
+        4. Sistema envia o nome do perfil solcitado para o servidor;
+        5. Servidor faz uma consulta no banco de dados e retorna o resultado para o sistema;
+        6. Sistema exibe as informações do perfil buscado pelo usuário;
+        
+* **Exceções:**
+   
+   * Se a consulta realizada pelo servidor não tiver resutltados será retornado para o sistema uma mensagem de erro.
+***
 
