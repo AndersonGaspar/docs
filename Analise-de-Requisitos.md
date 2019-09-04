@@ -76,7 +76,7 @@
   * Se a validação dos campos no item 6 não ocorrer com sucesso, sistema apresenta resultado negativo e fluxo retorna para item 4.
 ***
 
-**9. Caso de Uso: Visualizar Perfil**
+**4. Caso de Uso: Visualizar Perfil**
 
 * **Ator Primário:** Usuário
 * **Ator Secundário:** Servidor
@@ -96,7 +96,7 @@
 ***
 
 
-**4. Caso de Uso: Cadastrar Tarefa**
+**5. Caso de Uso: Cadastrar Tarefa**
 
 * **Ator Primário:** Usuário
 * **Ator Secundário:** Servidor
@@ -119,7 +119,7 @@
 
 ***
 
-**5. Caso de Uso: Editar Tarefa**
+**6. Caso de Uso: Editar Tarefa**
 
 * **Ator Primário:** Usuário
 * **Ator Secundário:** Servidor
@@ -144,7 +144,7 @@
 
 ***
 
-**6. Caso de Uso: Pontuar Tarefa**
+**7. Caso de Uso: Pontuar Tarefa**
 
 * **Ator Primário:** Usuário
 * **Ator Secundário:** Servidor
@@ -166,7 +166,7 @@
 
 ***
 
-**7. Caso de Uso: Finalizar Tarefa**
+**8. Caso de Uso: Finalizar Tarefa**
 
 * **Ator Primário:** Usuário
 * **Ator Secundário:** Servidor
@@ -189,7 +189,7 @@
 
 ***
 
-**8. Caso de Uso: Configurar Rotina**
+**9. Caso de Uso: Configurar Rotina**
 
 * **Ator Primário:** Usuário
 * **Ator Secundário:** Servidor
@@ -214,7 +214,7 @@
   * Se a validação dos campos no item 7 não tiver sucesso será retornado uma mensagem de falha para o usuário e o sistema retornará para o item 4.
 ***
 
-**9. Caso de Uso: Visualizar Rotina**
+**10. Caso de Uso: Visualizar Rotina**
 
 * **Ator Primário:** Usuário
 * **Ator Secundário:** Servidor
@@ -235,7 +235,7 @@
 * Se a validação dos campos no item 3 não ocorrer com sucesso, sistema apresenta resultado negativo.
 ***
 
-**10. Caso de Uso: Configurar Grupo/Residencia**
+**11. Caso de Uso: Configurar Grupo/Residencia**
 
 * **Ator Primário:** Usuário
 * **Ator Secundário:** Servidor
@@ -258,7 +258,7 @@
   * Se a validação dos campos no item 7 não tiver sucesso será retornado uma mensagem de falha para o usuário e o sistema retornará para o item 2.
 ***
 
-**10. Caso de Uso: Visualizar Grupo/Residencia**
+**12. Caso de Uso: Visualizar Grupo/Residencia**
 
 * **Ator Primário:** Usuário
 * **Ator Secundário:** Servidor
@@ -278,7 +278,7 @@
 ***
 
 
-**9. Caso de Uso: Pesquisar Usuário**
+**13. Caso de Uso: Pesquisar Usuário**
 
 * **Ator Primário:** Usuário
 * **Ator Secundário:** Servidor
@@ -299,7 +299,7 @@
    * Se a consulta realizada pelo servidor não tiver resutltados será retornado para o sistema uma mensagem de erro.
 ***
 
-**4. Caso de Uso: Cadastrar membros para Grupo/Residencia**
+**14. Caso de Uso: Cadastrar membros para Grupo/Residencia**
 
 * **Ator Primário:** Usuário
 * **Ator Secundário:** Servidor
@@ -322,7 +322,7 @@
   * Se a consulta realizada pelo servidor não tiver resutltados será retornado para o sistema uma mensagem de erro.
 ***
 
-**10. Caso de Uso: Visualizar membros para Grupo/Residencia**
+**15. Caso de Uso: Visualizar membros para Grupo/Residencia**
 
 * **Ator Primário:** Usuário
 * **Ator Secundário:** Servidor
