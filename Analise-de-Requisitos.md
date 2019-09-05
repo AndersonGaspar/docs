@@ -1,8 +1,10 @@
 ## Análise de Requisitos
 
+### Diagrama dos Casos de Uso
+
+![use_cases_diagram](/home/felipe/ifsc/pji2/docs/images/use_cases_diagram.png)
+
 ### Descrição dos Casos de Uso
-
-
 
 **1. Caso de Uso: Registrar Usuário**
 
@@ -320,4 +322,5 @@
 * **Exceções:**
   
    * Se a consulta realizada pelo servidor não tiver resultados o sistema exibirá resultado negativo e o fluxo retornará para o item 2;
+
 ***
