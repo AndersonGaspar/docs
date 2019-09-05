@@ -2,7 +2,7 @@
 
 ### Diagrama dos Casos de Uso
 
-![use_cases_diagram](/home/felipe/ifsc/pji2/docs/images/use_cases_diagram.png)
+![use_cases_diagram](./images/use_cases_diagram.png)
 
 ### Descrição dos Casos de Uso
 
