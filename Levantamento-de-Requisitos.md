@@ -3,15 +3,15 @@
 
 **RF.01 -** Permitir Registro e Autenticação do Usuário;
 
-**RF.02 -** Alterar dados do Usuário;
+**RF.02 -** Visualizar e Alterar dados do Perfil do Usuário;
 
 **RF.03 -** Cadastrar, editar e finalizar tarefas;
 
-**RF.04 -** Cadastrar rotinas;
+**RF.04 -** Cadastrar e Visualizar rotinas;
 
 **RF.05 -** Gerar notificação para tarefas programadas;
 
-**RF.06 -** Cadastrar Grupo/Residência;
+**RF.06 -** Cadastrar e Visualizar Grupo/Residência;
 
 **RF.07 -** Adicionar Usuários ao Grupo;
 
