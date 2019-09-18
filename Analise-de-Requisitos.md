@@ -20,9 +20,9 @@
 
   ```
   1. Após instalação do aplicativo USUÁRIO acessa clicando no ícone;
-  2. Sistema apresenta tela de login e USUÁRIO clica no botão Registrar;
+  2. Sistema apresenta tela de login e USUÁRIO clica no botão Registrar-se;
   3. Sistema apresenta tela para que USUÁRIO preencha suas informações;
-  4. USUÁRIO preenche as informações e clica no botão Enviar;
+  4. USUÁRIO preenche as informações e clica no botão Registrar-se;
   5. Sistema executa validações dos campos (cpf, e-mail, datas, etc.);
   6. Sistema envia solicitação de registro para SERVIDOR;
   7. SERVIDOR verifica se não existe USUÁRIO com mesma identificação;
@@ -50,7 +50,7 @@
 
         1. USUÁRIO abre aplicativo clicando no ícone;
         2. Sistema apresenta tela para que USUÁRIO digite login e senha para autenticação;
-        3. USUÁRIO digita login e senha e clica no botão acessar;
+        3. USUÁRIO digita login e senha e clica no botão Entrar;
         4. Sistema envia credenciais do USUÁRIO para o SERVIDOR autenticar;
         5. SERVIDOR retorna confirmação da autenticação para o sistema;
         6. Sistema apresenta tela principal para o USUÁRIO.
@@ -94,11 +94,9 @@
 
 * **Fluxo principal:**
   
-        1. Na tela principal, USUÁRIO clica no menu e seleciona a opção perfil;
-        2. Sistema apresenta tela de perfil do USUÁRIO;
-        3. USUÁRIO clica no botão flutuante Editar;
+        1. Na tela de perfil, USUÁRIO clica no menu do card com o perfil e seleciona a opção editar;
         4. Sistema apresenta tela de edição com informações possíveis de alterar;
-        5. USUÁRIO altera informações desejadas e clica no botão Salvar;
+        5. USUÁRIO altera informações desejadas e clica no ícone Salvar;
         6. Sistema executa validações dos campos alterados;
         7. Sistema envia solicitação de alteração para o SERVIDOR;
         8. SERVIDOR executa alteração no Banco de dados e retorna resultado;
