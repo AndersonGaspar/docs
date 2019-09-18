@@ -95,16 +95,16 @@
 * **Fluxo principal:**
   
         1. Na tela de perfil, USUÁRIO clica no menu do card com o perfil e seleciona a opção editar;
-        2. Sistema apresenta tela de edição com informações possíveis de alterar;
-        3. USUÁRIO altera informações desejadas e clica no ícone Salvar;
-        4. Sistema executa validações dos campos alterados;
-        5. Sistema envia solicitação de alteração para o SERVIDOR;
-        6. SERVIDOR executa alteração no Banco de dados e retorna resultado;
-        7. Sistema apresenta confirmação e retorna para tela de perfil do USUÁRIO ;
+        4. Sistema apresenta tela de edição com informações possíveis de alterar;
+        5. USUÁRIO altera informações desejadas e clica no ícone Salvar;
+        6. Sistema executa validações dos campos alterados;
+        7. Sistema envia solicitação de alteração para o SERVIDOR;
+        8. SERVIDOR executa alteração no Banco de dados e retorna resultado;
+        9. Sistema apresenta confirmação e retorna para tela de perfil do USUÁRIO ;
     
 * **Exceções:**
   
-  * Se a validação dos campos no item 4 não ocorrer com sucesso, sistema apresenta resultado negativo e fluxo retorna para item 2.
+  * Se a validação dos campos no item 6 não ocorrer com sucesso, sistema apresenta resultado negativo e fluxo retorna para item 4.
 ***
 
 
