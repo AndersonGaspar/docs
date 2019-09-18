@@ -2,7 +2,7 @@
 
 ### Diagrama dos Casos de Uso
 
-![use_cases_diagram](./images/use_cases_diagram.png)
+![use_cases_diagram](../images/use_cases_diagram.png)
 
 ### Descrição dos Casos de Uso
 
@@ -95,16 +95,16 @@
 * **Fluxo principal:**
   
         1. Na tela de perfil, USUÁRIO clica no menu do card com o perfil e seleciona a opção editar;
-        4. Sistema apresenta tela de edição com informações possíveis de alterar;
-        5. USUÁRIO altera informações desejadas e clica no ícone Salvar;
-        6. Sistema executa validações dos campos alterados;
-        7. Sistema envia solicitação de alteração para o SERVIDOR;
-        8. SERVIDOR executa alteração no Banco de dados e retorna resultado;
-        9. Sistema apresenta confirmação e retorna para tela de perfil do USUÁRIO ;
+        2. Sistema apresenta tela de edição com informações possíveis de alterar;
+        3. USUÁRIO altera informações desejadas e clica no ícone Salvar;
+        4. Sistema executa validações dos campos alterados;
+        5. Sistema envia solicitação de alteração para o SERVIDOR;
+        6. SERVIDOR executa alteração no Banco de dados e retorna resultado;
+        7. Sistema apresenta confirmação e retorna para tela de perfil do USUÁRIO ;
     
 * **Exceções:**
   
-  * Se a validação dos campos no item 6 não ocorrer com sucesso, sistema apresenta resultado negativo e fluxo retorna para item 4.
+  * Se a validação dos campos no item 4 não ocorrer com sucesso, sistema apresenta resultado negativo e fluxo retorna para item 2.
 ***
 
 
@@ -122,7 +122,7 @@
   
         1. Na tela principal, USUÁRIO clica no botão flutuante Adicionar;
         2. Sistema apresenta tela de cadastro de tarefa;
-        3. USUÁRIO preenche informações da tarefa e clica em Salvar;
+        3. USUÁRIO preenche informações da tarefa e clica no ícone Salvar;
         4. Sistema executa validação dos campos;
         5. Sistema envia solicitação de cadastro de tarefa para o SERVIDOR;
         6. SERVIDOR executa gravação da tarefa no Banco de Dados e retorna resultado;
@@ -146,19 +146,17 @@
 
 * **Fluxo Principal:** 
   
-        1. Na tela principal, USUÁRIO clica na tarefa que deseja editar;
-        2. Sistema apresenta tela de informações da tarefa;
-        3. USUÁRIO clica no botão flutuante Editar;
-        4. Sistema apresenta tela de edição da tarefa com campos possíveis de alterar;
-        5. USUÁRIO altera informações desejadas e clica em Salvar;
-        6. Sistema executa validação dos campos;
-        7. Sistema envia solicitação de alteração de tarefa para o SERVIDOR;
-        8. SERVIDOR executa gravação da alteração no Banco de Dados e retorna resultado;
-        9. Sistema apresenta confirmação e retorna para tela de informações da tarefa;
+        1. Na tela principal, USUÁRIO clica no menu do card da tarefa que deseja e seleciona editar;
+        2. Sistema apresenta tela de edição da tarefa com campos possíveis de alterar;
+        3. USUÁRIO altera informações desejadas e clica em Salvar;
+        4. Sistema executa validação dos campos;
+        5. Sistema envia solicitação de alteração de tarefa para o SERVIDOR;
+        6. SERVIDOR executa gravação da alteração no Banco de Dados e retorna resultado;
+        7. Sistema apresenta confirmação e retorna para tela de informações da tarefa;
     
 * **Exceções:**
   
-  * Se a validação dos campos não ocorrer com sucesso ou gravação da tarefa no banco de dados retornar erro, sistema apresenta resultado negativo e fluxo retorna para item 4.
+  * Se a validação dos campos não ocorrer com sucesso ou gravação da tarefa no banco de dados retornar erro, sistema apresenta resultado negativo e fluxo retorna para item 2.
 
 ***
 **7. Caso de Uso: Finalizar Tarefa**
@@ -173,13 +171,12 @@
 
 * **Fluxo Principal:** 
   
-        1. Na tela principal, USUÁRIO clica na tarefa que deseja finalizar;
-        2. Sistema apresenta tela de informações da tarefa;
-        3. USUÁRIO clica no botão flutuante Finalizar;
+        1. Na tela principal, USUÁRIO clica no menu do card da tarefa que deseja e seleciona finalizar;
+        2. Sistema solicita para USUÁRIO confirmação da finalização;
+        3. USUÁRIO confirma finalização da tarefa;
         4. Sistema envia solicitação de finalização da tarefa para o SERVIDOR;
-        5. Sistema apresenta notificação sobre finalização da tarefa;
-        6. SERVIDOR atualiza o estado da tarefa de "Aberta" para "Finalizada"; 
-        7. Sistema volta para a tela principal.
+        5. SERVIDOR atualiza o estado da tarefa de "Aberta" para "Finalizada"; 
+        6. Sistema volta para a tela principal.
 
 ***
 
@@ -195,15 +192,18 @@
 
 * **Fluxo Principal:** 
   
-        1. Na tela principal, o sistema apresenta tela de tarefas para avaliação;
-        2. USUÁRIO clica no botão flutuante Feito/Não Feito de determinada tarefa;
-        4. Sistema envia avaliação da tarefa para o SERVIDOR;
-        5. SERVIDOR executa gravação da alteração no Banco de Dados e retorna resultado;
-        6. Sistema apresenta confirmação e retorna para tela de informações da tarefa;
+        1. Na tela principal, o USUÁRIO seleciona a aba "Finalizadas";
+        2. Sistema apresenta cards de tarefas finalizadas;
+        3. USUÁRIO clica no menu do card da tarefa que deseja e seleciona a opção avaliar;
+        4. Sistema apresenta tela com informações da tarefa para avaliação;
+        5. USUÁRIO executa avaliação da tarefa, adiciona possíveis comentários e clica no ícone salvar;
+        6. Sistema envia avaliação da tarefa para o SERVIDOR;
+        7. SERVIDOR executa gravação da alteração no Banco de Dados e retorna resultado;
+        8. Sistema apresenta confirmação e retorna para tela principal na aba de tarefas finalizadas;
     
 * **Exceções:**
   
-  * Se a gravação da tarefa no banco de dados retornar erro, sistema apresenta resultado negativo e fluxo retorna para item 1.
+  * Se a gravação da tarefa no banco de dados retornar erro, sistema apresenta resultado negativo e fluxo retorna para item 4.
 
 ***
 **9. Caso de Uso: Configurar Rotina**
@@ -220,10 +220,10 @@
   
         1. Na tela principal, USUÁRIO clica no menu e seleciona a opção rotinas;
         2. Sistema apresenta tela com as rotinas que envolvem o usuário;
-        3. USUÁRIO clica na opção Criar/Editar;
-        4. Sistema apresenta as opções de configuração da rotina;
-        5. USUÁRIO configura a rotina e clica em Aplicar;
-        6. Sistema faz uma validação inicial da configuração e envia as configurações para o SERVIDOR;        
+        3. USUÁRIO clica no botão flutuante adicionar;
+        4. Sistema apresenta a tela de configuração da rotina;
+        5. USUÁRIO configura a rotina e clica no ícone Salvar;
+        6. Sistema faz uma validação inicial da configuração e envia a solicitação de criação da rotina para o SERVIDOR;        
         7. SERVIDOR valida as configurações recebidas e atualiza ou cria a rotina;
         8. SERVIDOR envia uma notificação de sucesso para o USUÁRIO; 
         9. Sistema retorna para a tela de rotinas.
@@ -249,9 +249,9 @@
         1. Na tela principal, USUÁRIO clica no menu e seleciona a opção rotinas;
         2. Sistema envia o pedido das rotinas registradas para o SERVIDOR;
         3. SERVIDOR envia as informações sobre as rotinas para o Sistema; 
-        4. Sistema apresenta tela com as rotinas que envolvem o usuário;
-        5. USUÁRIO clica na rotina que deseja visualizar detalhadamente;
-        6. Sistema apresenta as informações da rotina;
+        4. Sistema apresenta tela com cards das rotinas que envolvem o usuário;
+        5. USUÁRIO clica no menu do card da rotina que deseja detalhes e seleciona visualizar;
+        6. Sistema apresenta tela com as informações da rotina;
 ***
 
 **11. Caso de Uso: Configurar Grupo/Residência**
@@ -266,9 +266,9 @@
 
 * **Fluxo Principal:** 
   
-        1. Na tela principal, USUÁRIO clica no menu e seleciona a Casa;
+        1. Na tela principal, USUÁRIO clica no menu e seleciona a opção Casa;
         2. Sistema apresenta tela com as possíveis configurações da Casa;
-        3. USUÁRIO edita as configurações e clica em Aplicar;
+        3. USUÁRIO edita as configurações e clica em Salvar;
         4. Sistema faz uma validação inicial da configuração e envia as configurações para o SERVIDOR;        
         5. SERVIDOR valida as configurações recebidas e atualiza o registro da casa;
         6. SERVIDOR envia uma notificação de sucesso para o USUÁRIO;
@@ -291,10 +291,10 @@
 
 * **Fluxo Principal:** 
   
-        1. Na tela principal, USUÁRIO clica no menu e seleciona a Casa;
+        1. Na tela principal, USUÁRIO clica no menu e seleciona a opção Casa;
         2. Sistema faz um pedido das informações do Grupo/Residencia para o SERVIDOR;        
-        3. SERVIDOR envia as atualizações do Grupo/Residencia;
-        4. Sistema apresenta tela com as possíveis configurações da Casa;
+        3. SERVIDOR envia as informações do Grupo/Residencia;
+        4. Sistema apresenta tela com as configurações da Casa;
 ***
 
 
@@ -312,10 +312,10 @@
   
         1. Na tela principal, USUÁRIO clica no menu e seleciona a opção perfil;
         2. Sistema apresenta tela com informações de perfil do USUÁRIO;
-        3. USUÁRIO escreve o nome de um perfil no campo Buscar e clica na opção;
-        4. Sistema envia o nome do perfil solcitado para o servidor;
+        3. USUÁRIO escreve o nome usuário no campo de pesquisa e clica no ícone Buscar;
+        4. Sistema envia o nome do perfil solicitado para o servidor;
         5. Servidor faz uma consulta no banco de dados e retorna o resultado para o sistema;
-        6. Sistema exibe as informações do perfil buscado pelo usuário;
+        6. Sistema exibe tela com cards do(s) possível(is) perfil(s) encontrados;
     
 * **Exceções:**
   
