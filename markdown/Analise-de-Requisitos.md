@@ -322,3 +322,21 @@
    * Se a consulta realizada pelo servidor não tiver resultados o sistema exibirá resultado negativo e o fluxo retornará para o item 2;
 
 ***
+
+14. Caso de Uso: Visualizar conta
+
+    Ator Primário: Usuário
+
+    Ator Secundário: Servidor
+
+    Requisito: RF.06
+
+    Resumo: Visualização de conta do USUÁRIO
+
+    Fluxo Principal:
+
+      1. Na tela principal, USUÁRIO clica no menu e seleciona a opção Conta;
+      2. SERVIDOR envia as informações da Conta do usuario;
+      3. Sistema apresenta tela com as configurações da Casa;
+
+
