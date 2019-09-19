@@ -11,3 +11,5 @@ Home Tasks project documentation
 
 4. [Diagramas de sequência.](./markdown/Diagrama-de-sequencia.md)
 
+5. [Prototipagem das telas.](./markdown/Telas-do-app.md)
+
