@@ -30,6 +30,12 @@ Ao clicar no botão flutuante + exibido na tela anterior na aba 'aberta', esta t
 
 ![criar_tarefas](../images/telas_cadastrar_tarefa.png)
 
+- **Editar tarefas**
+
+Ao clicar no ícone com três pontos na tela principal a tela a seguir é exibida
+
+![editar_tarefas](../images/telas_editar_tarefa.png)
+
 **3. Menu:**
 
 ![menu](../images/telas_menu_deslizante.png)
@@ -63,3 +69,24 @@ Ao clicar no ícone dos três pontos da tela anterior, a tela a seguir é exibid
 E digitar um nome no campo 'buscar' da tela anterior a tela ao lado a seguir é exibida
 
 ![visualizar_perfils](../images/telas_detalhes_do_perfil.png)
+
+**6. Casa**
+
+- **Visualizar casa cadastrada**
+
+![visualizar_casa](../images/telas_procurar_casas.png)
+
+- **Ao clicar em 'buscar' na tela anterior, a tela a seguir é exibida**
+
+![procurar_casa](../images/telas_casa.png)
+
+**7. Regras**
+
+- **Visualizar as regras determinadas pelo proprietário da casa**
+
+![regras](../images/telas_regras.png)
+
+**8. Contas**
+
+![contas](../images/telas_contas.png)
+
