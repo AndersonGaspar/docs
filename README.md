@@ -13,3 +13,5 @@ Home Tasks project documentation
 
 5. [Prototipagem das telas.](./markdown/Telas-do-app.md)
 
+6. [API REST do Web Service.](./markdown/API-Web-Service.md)
+
