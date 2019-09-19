@@ -323,20 +323,24 @@
 
 ***
 
-14. Caso de Uso: Visualizar conta
+**14. Caso de Uso: Visualizar Conta**
 
-    Ator Primário: Usuário
+* **Ator Primário:** Usuário
 
-    Ator Secundário: Servidor
+* **Ator Secundário:** Servidor
 
-    Requisito: RF.06
+* **Requisito:** RF.08
 
-    Resumo: Visualização de conta do USUÁRIO
+* **Resumo:** Visualização da Conta do usuário
 
-    Fluxo Principal:
+* **Fluxo Principal:** 
+  
+         1. Na tela principal, USUÁRIO clica no menu e seleciona a opção Conta;
+         2. Sistema envia solicitação de informações da Conta do USUÁRIO para o SERVIDOR
+         3. SERVIDOR envia as informações da Conta do USUÁRIO;
+         4. Sistema apresenta tela com as informações da conta;
+    
 
-      1. Na tela principal, USUÁRIO clica no menu e seleciona a opção Conta;
-      2. SERVIDOR envia as informações da Conta do usuario;
-      3. Sistema apresenta tela com as configurações da Casa;
+***
 
 

@@ -77,3 +77,10 @@
 ![sd-pesquisar-usuario](../images/sequence_diagram_pesquisar_usuario.png)
 
 ***
+
+**14. Caso de Uso: Visualizar Conta**
+
+![sd-visualizar-conta](../images/sequence_diagram_visualizar_conta.png)
+
+***
+
