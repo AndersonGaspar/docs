@@ -60,13 +60,13 @@ Recuperar as informações do usuário solicitado por {name} ou {email} enviado 
 
   ```json
   {
-    "id": 1,
-    "full_name": "username",
-    "cpf": "123.456.789-00",
-    "login":"login",
-    "telephone":"9999-9999",
-    "genre":"male",
-    "date_nasc":"01/01/1900"
+  	"id": 1,
+      "full_name": "username",
+      "cpf": "123.456.789-00",
+      "login":"login",
+      "telephone":"9999-9999",
+      "genre":"male",
+      "date_nasc":"01/01/1900"
   }
   ```
 
@@ -96,13 +96,13 @@ Executa o registro de um novo usuário no servidor. O corpo da requisição cont
 	
 	```json
   {
-    "full_name": "username",
-    "cpf": "123.456.789-00",
-    "login":"login",
-    "password":"password",
-    "telephone":"9999-9999",
-	  "genre":"male",
-    "date_nasc":"01/01/1900"
+      "full_name": "username",
+      "cpf": "123.456.789-00",
+      "login":"login",
+      "password":"password",
+      "telephone":"9999-9999",
+	    "genre":"male",
+      "date_nasc":"01/01/1900"
 	}
 	```
 
@@ -114,13 +114,13 @@ Executa o registro de um novo usuário no servidor. O corpo da requisição cont
 
 	```json
   {
-    "id": 1,
-    "full_name": "username",
-    "cpf": "123.456.789-00",
-    "login":"login",
-    "telephone":"9999-9999",
-    "genre":"male",
-    "date_nasc":"01/01/1900"
+      "id": 1,
+      "full_name": "username",
+      "cpf": "123.456.789-00",
+      "login":"login",
+      "telephone":"9999-9999",
+      "genre":"male",
+      "date_nasc":"01/01/1900"
   }
 	```
 	
@@ -194,10 +194,10 @@ Executa a alteração do dados do usuário no servidor. O corpo da requisição 
 
 * **Corpo da requisição:**
 
-	```json
-{
-    "id":1,
-    "telephone":"8888-9999"
+  ```json
+  {
+      "id":1,
+      "telephone":"8888-9999"
   }
   ```
 
