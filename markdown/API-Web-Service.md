@@ -1,6 +1,38 @@
 # Documentação da API do Web Service
 
-> O documento descreve a forma de utilização da API REST do Serviço Web fornecido pelo servidor da solução. 
+> O documento descreve a forma de utilização da API REST do Serviço Web fornecido pelo servidor da solução Home Tasks. 
+
+***
+
+**OBS.:** Todas as requisições efetuadas necessitam que o usuário esteja previamente autenticado. Por isso o envio de um JWT (JSON Web Token), retornado do processo de autenticação, no cabeçalho é `OBRIGATÓRIO`. `Authorization: Bearer <JWT>`
+
+***
+
+Os seguintes erros podem ser retornados em qualquer requisição caso o Usuário não esteja autenticado ou não tenha permissão.
+
+**Código de resposta de erro:**`401 UNAUTHORIZED`
+
+Quando é feita a requisição sem informar o token de autenticação no cabeçalho.
+
+**Corpo da resposta:**
+
+```json
+{
+	"error": "Autenticação Necessária"
+}
+```
+
+**Código de resposta de erro:**`403 FORBIDDEN`
+
+Caso o usuário autenticado não tenha permissão para efetuar a requisição.
+
+**Corpo da resposta:**
+
+```json
+{
+	"error": "Permissão Negada"
+}
+```
 
 
 
@@ -8,69 +40,196 @@
 
 Gerenciar informações sobre o usuário e verificar informações dos demais usuários.
 
-Endpoint: **`/api/user`**
+Endpoint: **`/api/v1/user`**
 
 
 
-#### GET /api/user/{name or email}
+#### GET /api/v1/user/{name or email}
 
-Recuperar as informações do usuário solicitado por {name} ou {email} enviado na url. Retorna os dados em formato `application/json`.
+Recuperar as informações do usuário solicitado por {name} ou {email} enviado na URL. Retorna os dados em formato `application/json`.
 
-```json
-{
+* **Requisitos:**
+
+  Token de autenticação (JWT) enviado no cabeçalho da requisição.
+
+* **Código de resposta de sucesso:**`200 OK`
+
+  Usuário encontrado.
+
+* **Corpo da resposta:**
+
+  ```json
+  {
     "id": 1,
     "full_name": "username",
     "cpf": "123.456.789-00",
     "login":"login",
     "telephone":"9999-9999",
     "genre":"male",
-	"date_nasc":"01/01/1900"
-}
-```
+    "date_nasc":"01/01/1900"
+  }
+  ```
+
+* **Código de resposta de erro:**`404 NOT FOUND`
+
+  Usuário não encontrado de acordo com os dados informados na URL da requisição.
+
+* **Corpo da resposta:**
+
+  ```json
+  {
+  	"error": "Usuário não encontrado"
+  }
+  ```
 
 
 
-#### POST /api/user
+#### POST /api/v1/user
 
-Executa o registro de um novo usuário no servidor. O corpo da requisição contém todos os parâmetros do Usuário em formato `application/json`.
+Executa o registro de um novo usuário no servidor. O corpo da requisição contém todos os parâmetros do Usuário em formato `application/json`. Retorna também em formato `application/json ` os dados, incluindo `id`, do Usuário recém criado.
 
-```json
-{
+* **Requisitos:**
+
+  Os seguintes atributos são obrigatórios no corpo da requisição:`full_name`, `cpf`, `login` e `password` 	
+
+* **Corpo da requisição:**
+	
+	```json
+  {
+    "full_name": "username",
+    "cpf": "123.456.789-00",
+    "login":"login",
+    "password":"password",
+    "telephone":"9999-9999",
+	  "genre":"male",
+    "date_nasc":"01/01/1900"
+	}
+	```
+
+* **Código de resposta de sucesso:**`201 CREATED`
+
+  Usuário criado com sucesso.
+
+* **Corpo da resposta:**
+
+	```json
+  {
+    "id": 1,
     "full_name": "username",
     "cpf": "123.456.789-00",
     "login":"login",
     "telephone":"9999-9999",
     "genre":"male",
-	"date_nasc":"01/01/1900"
-}
-```
+    "date_nasc":"01/01/1900"
+  }
+	```
+	
+* **Código de resposta de erro:**`400 BAD REQUEST`
 
+  Quando algum campo obrigatório não foi informado no corpo da solicitação. 
 
+* **Corpo da resposta:**
 
-#### POST /api/user/{username:password}
+  ```json
+  {
+  	"error": "Atributos Obrigatórios:full_name, cpf, login e password"
+  }
+  ```
 
-Realiza a autenticação do usuário junto ao servidor.
+* **Código de resposta de erro:**`409 CONFLICT`
 
+  Quando já existe um usuário com mesmo login registrado.
 
+* **Corpo da resposta:**
 
-#### UPDATE /api/user
+  ```json
+  {
+  	"error": "Login já existe"
+  }
+  ```
 
-Executa a alteração do dados do usuário no servidor. O corpo da requisição contém todos os parâmetros do Usuário em formato `application/json`.
+  
 
-```json
+#### POST /api/v1/login
+
+Realiza a autenticação do usuário junto ao servidor. Necessário o envio do `login` e `password` codificados em base 64 no cabeçalho da requisição: `Authorization: Basic <Base64(login:password)>`. Retorna o token de autenticação (JWT) caso a autenticação tenha ocorrido com sucesso.
+
+* **Requisitos:**
+
+  Cabeçalho `Authorization: Basic <login:password>`, com `login:password` codificados em Base 64, na requisição.
+
+* **Código  de resposta de sucesso:**`200 OK`
+
+  Autenticação realizada com sucesso.
+
+* **Corpo da resposta:**
+
+  ```json
+  {
+     "token":"eyJhbGciOiJIUzI1NiIs.eyJ1bmlxdWVfbmFtZSI6IlR.SmjuyXgloA2RUhIlAEetrQwfC0Eh"
+  }
+  ```
+
+* **Código de resposta de erro:**`401 UNAUTHORIZED`
+
+  Autenticação não pode ser realizada.
+
+* **Corpo da resposta:**
+
+  ```json
+  {
+  	"error": "Usuário ou Senha inválidos ou inexistente"
+  }
+  ```
+
+  
+
+#### PUT /api/v1/user
+
+Executa a alteração do dados do usuário no servidor. O corpo da requisição deve conter todos os parâmetros do Usuário que deseja ser alterado em formato `application/json`. 
+
+* **Requisitos:**
+
+  O atributo `id` é obrigatório no corpo da requisição.
+
+* **Corpo da requisição:**
+
+	```json
 {
     "id":1,
-    "full_name": "username",
-    "cpf": "123.456.789-00",
-    "login":"login",
-    "telephone":"9999-9999",
-    "genre":"male",
-	"date_nasc":"01/01/1900"
-}
-```
+    "telephone":"8888-9999"
+  }
+  ```
 
+* **Código de resposta de sucesso:**`204 NO CONTENT`
 
+  Usuário atualizado com sucesso. Sem corpo de resposta.
 
+* **Código de resposta de erro:**`404 NOT FOUND`
+
+  Usuário não encontrado.
+
+* **Corpo da resposta:**
+
+  ```json
+  {
+  	"error": "Usuário não encontrado"
+  }
+  ```
+  
+* **Código de resposta de erro:**`400 BAD REQUEST`
+  
+  Atributo `id` não foi informado no corpo da requisição.
+  
+* **Corpo da resposta:**
+
+  ```json
+  {
+  	"error": "Atributo Obrigatório:id"
+  }
+  ```
+
+  
 ***
 
 
@@ -374,4 +533,8 @@ Executa a alteração nas regras da Casa. O corpo da requisição contém todos 
    	"Regra 1":"Porta sempre trancada",
     "Regra 2":"Não execução da tarefa acrescenta 30 reais no aluguel"
 }
+```
+
+```
+
 ```
