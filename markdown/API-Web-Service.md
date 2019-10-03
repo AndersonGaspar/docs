@@ -103,7 +103,7 @@ Executa o registro de um novo usuário no servidor. O corpo da requisição cont
       "login":"login",
       "password":"password",
       "telephone":"9999-9999",
-	  "genre":"male",
+      "genre":"male",
       "date_nasc":"01/01/1900"
   }
   ```
@@ -396,9 +396,7 @@ Executa a alteração dos dados tarefa no servidor. O corpo da requisição deve
   }
   ```
 
-  
-
-
+***
 
 ## 3. Rotina
 
@@ -440,7 +438,7 @@ Recuperar as rotinas relacionadas ao usuário autenticado. Retorna os dados em f
 			"hour_limit":"23:23",
           "responsavel":"todos",
         	"date_val":"01/01/2000"
-    }
+      }
 ]
   ```
 
@@ -457,40 +455,107 @@ Recuperar as rotinas relacionadas ao usuário autenticado. Retorna os dados em f
   ```
 
   
-#### POST /api/routine
+#### POST /routines
 
-Executa o cadastro de uma nova rotina no servidor. O corpo da requisição contém todos os parâmetros da rotina em formato `application/json`.
+Executa o cadastro de uma nova rotina no servidor. O corpo da requisição contém todos os parâmetros da rotina em formato `application/json`. Retorna os dados da Rotina recem criada.
 
-```json
-{
-    "routine_name": "Rotina 2",
-    "description": "Descrição da rotina 2",
-    "days":"seg,sex",
-	"hour_limit":"23:23",
-    "responsavel":"todos",
-    "date_val":"01/01/2000"
-}
-```
+* **Requisitos:**
 
+  Atributo `routine_name` é obrigatório no corpo da requisição
 
+* **Corpo da requisição:**
 
-#### UPDATE /api/routine
+  ```json
+  {
+  	"routine_name": "Rotina 2",
+      "description": "Descrição da rotina 2",
+      "days":"seg,sex",
+	    "hour_limit":"23:23",
+      "responsavel":"todos",
+      "date_val":"01/01/2000"
+  }
+  ```
 
-Executa a alteração do dados da rotina no servidor. O corpo da requisição contém todos os parâmetros do rotina em formato `application/json`. 
+* **Código de resposta de sucesso:**`201 CREATED`
 
-```json
-{
-    "id":2,
-    "routine_name": "Rotina 2",
-    "description": "Descrição da rotina 2",
-    "days":"seg,sex",
-	"hour_limit":"23:23",
-    "responsavel":"todos",
-    "date_val":"01/01/2000"
-}
-```
+  Rotina criada com sucesso.
 
+* **Corpo da resposta:**
 
+  ```json
+  {
+    	"id":3,
+    	"routine_name": "Rotina 2",
+    	"description": "Descrição da rotina 2",
+    	"days":"seg,sex",
+  	"hour_limit":"23:23",
+      "responsavel":"todos",
+      "date_val":"01/01/2000"
+  }
+  ```
+
+* **Código de resposta de erro:**`400 BAD REQUEST`
+
+  Se o atributo obrigatório não for enviado no corpo da requisição.
+
+* **Corpo da resposta:**
+
+  ```
+  {
+  	"error" : "Atributo routine_name obrigatório"
+  }
+  ```
+
+  
+#### PUT /routines
+
+Executa a alteração do dados da rotina no servidor. Os atributos que irão ser atualizados devem ser enviados no corpo da requisição em formato `application/json`. 
+
+* **Requisitos:**
+
+  Atributo `id` da rotina é obrigatório no corpo da requisição.
+
+* **Corpo da requisição:**
+
+  ```json
+  {
+      "id":2,
+      "routine_name": "Rotina 2",
+      "description": "Descrição da rotina 2",
+      "days":"seg,sex",
+      "hour_limit":"23:23",
+      "responsavel":"todos",
+      "date_val":"01/01/2000"
+  }
+  ```
+  
+* **Código de resposta de sucesso:**`204 NO CONTENT`
+
+  Rotina atualizada com sucesso. Sem corpo de resposta.
+
+* **Código de resposta de erro:**`404 NOT FOUND`
+
+  Rotina não encontrada para atualização.
+
+* **Corpo da resposta:**
+
+  ```json
+  {
+  	"error":"Rotina não encontrada"
+  }
+  ```
+
+* **Código de resposta de erro:**`400 BAD REQUEST`
+
+  Atributo `id` da rotina não informado no corpo da requisição.
+
+* **Corpo da resposta:**
+
+  ```json
+  {
+  	"error":"Atributo id obrigatório"
+  }
+  ```
 
 ***
 
