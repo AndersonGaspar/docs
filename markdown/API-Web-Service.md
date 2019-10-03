@@ -62,7 +62,7 @@ Recuperar as informações do usuário solicitado por {name} ou {email} enviado 
 
   ```json
   {
-  	"id": 1,
+      "id": 1,
       "full_name": "username",
       "cpf": "123.456.789-00",
       "login":"login",
@@ -103,7 +103,7 @@ Executa o registro de um novo usuário no servidor. O corpo da requisição cont
       "login":"login",
       "password":"password",
       "telephone":"9999-9999",
-	    "genre":"male",
+	  "genre":"male",
       "date_nasc":"01/01/1900"
 	}
 	```
@@ -300,18 +300,18 @@ Executa o cadastro de uma nova tarefa no servidor. O corpo da requisição cont�
 
 * **Requisitos:**
 
-  Os atributos `task_name` e `user_id` são obrigatórios no corpo da requisição.
+Os atributos `task_name` e `user_id` são obrigatórios no corpo da requisição.
 
 * **Corpo da requisição:**
 
   ```json
-{
+  {
       "task_name": "recolher lixo",
       "description": "recolher lixo da casa",
       "user_id":1,
-	    "date_limit":"01/01/1900 23:23",
+      "date_limit":"01/01/1900 23:23",
       "Pontos":60
-}
+  }
   ```
 
 * **Código de resposta de sucesso:**`201 CREATED`
@@ -410,33 +410,53 @@ Endpoint: **`/routines`**
 
 #### GET /routines
 
-Recuperar as rotinas relacionadas ao usuário informado pelo parâmetro {user}. Retorna os dados em formato `application/json`.
+Recuperar as rotinas relacionadas ao usuário autenticado. Retorna os dados em formato `application/json`.
 
-```json
+* **Requisitos:**
+
+  Token de autenticação enviado no cabeçalho.
+
+* **Código de resposta de sucesso:**`200 OK`
+
+  Rotinas do usuário encontradas.
+
+* **Corpo da resposta:**
+  ```json
 [
-	{
-    	"id":1,
-    	"routine_name": "Rotina 1",
-    	"description": "Descrição da rotina",
-    	"days":"seg,ter,qui",
-		"hour_limit":"23:23",
-        "responsavel":"alternar",
-        "date_val":"01/01/2000"
-	},
-    {
-    	"id":2,
-    	"routine_name": "Rotina 2",
-    	"description": "Descrição da rotina 2",
-    	"days":"seg,sex",
-		"hour_limit":"23:23",
-        "responsavel":"todos",
-        "date_val":"01/01/2000"
+		{
+    		"id":1,
+    		"routine_name": "Rotina 1",
+    		"description": "Descrição da rotina",
+    		"days":"seg,ter,qui",
+		  	"hour_limit":"23:23",
+        	"responsavel":"alternar",
+        	"date_val":"01/01/2000"
+		},
+    	{
+    		"id":2,
+    		"routine_name": "Rotina 2",
+    		"description": "Descrição da rotina 2",
+    		"days":"seg,sex",
+			"hour_limit":"23:23",
+          "responsavel":"todos",
+        	"date_val":"01/01/2000"
     }
 ]
-```
+  ```
 
+* **Código de resposta de erro:**`404 NOT FOUND`
 
+  Caso usuário autenticado não possua nenhuma rotina registrada.
 
+* **Corpo da resposta:**
+
+  ```json
+  {
+  	"error":"Nenhuma rotina registrada"
+  }
+  ```
+
+  
 #### POST /api/routine
 
 Executa o cadastro de uma nova rotina no servidor. O corpo da requisição contém todos os parâmetros da rotina em formato `application/json`.
