@@ -134,7 +134,7 @@ Executa o registro de um novo usuário no servidor. O corpo da requisição cont
 
   ```json
   {
-  	"error": "Atributos Obrigatórios:full_name, cpf, login e password"
+  	"error": "Atributos Obrigatórios - full_name, cpf, login e password"
   }
   ```
 
@@ -565,106 +565,244 @@ Executa a alteração do dados da rotina no servidor. Os atributos que irão ser
 
 Gerenciar informações da Casa
 
-Endpoint: **`/api/home`**
+Endpoint: **`/home`**
 
 
 
-#### GET /api/home/{name_home}
+#### GET /home/{name_home}
 
 Recuperar as informações da casa solicitada pelo parâmetro {name_home}. Retorna os dados em formato `application/json`.
 
-```json
-{
-    "id":1,
-    "home_name": "Casa 1",
-    "address": "Endereço",
-    "responsavel":"name",
-	"aluguel":200,
-    "foto":"foto.png"
-}
-```
+* **Requisitos:**
 
+  Token de autenticação enviado no cabeçalho.
 
+* **Código de resposta de sucesso:**`200 OK`
 
-#### POST /api/home
+  Casa encontrada.
 
-Executa o cadastro de uma nova Casa no servidor. O corpo da requisição contém todos os parâmetros para cadastro da Casa em formato `application/json`.
+* **Corpo da resposta:**
 
-```json
-{
-    "home_name": "Casa 2",
-    "address": "Endereço 2",
-    "responsavel":"name",
-	"aluguel":200,
-    "foto":"foto.png"
-}
-```
+  ```json
+  {
+      "id":1,
+      "home_name": "Casa 1",
+      "address": "Endereço",
+      "responsavel":"name",
+	  "aluguel":200,
+      "foto":"foto.png"
+  }
+  ```
 
+* **Código de resposta de erro:**`404 NOT FOUND`
 
+  Casa não encontrada de acordo com o parâmetro informado na URL da requisição.
 
-#### UPDATE /api/home
+* **Corpo da resposta:**
 
-Executa a alteração do dados da Casa no servidor. O corpo da requisição contém todos os parâmetros para alteração em formato `application/json`. 
+  ```Json
+  {
+  	"error":"Rotina não encontrada"
+  }
+  ```
 
-```json
-{
-    "id":1,
-    "home_name": "Casa 1",
-    "address": "Endereço 1",
-    "responsavel":"name",
-	"aluguel":200,
-    "foto":"foto.png"
-}
-```
+  
+#### POST /home
 
+Executa o cadastro de uma nova Casa no servidor. O corpo da requisição contém todos os parâmetros para cadastro da Casa em formato `application/json`. Retorna os dados em formado `json` da Casa cadastrada.
 
+* **Requisitos:**
 
+  Os seguintes atributos são obrigatórios no corpo da requisição: `home_name`, `address`, `responsavel` e `aluguel`.
+
+* **Corpo da requisição:**
+
+  ```json
+  {
+      "home_name": "Casa 2",
+      "address": "Endereço 2",
+      "responsavel":"name",
+	    "aluguel":200,
+      "foto":"foto.png"
+  }
+  ```
+
+* **Código de resposta de sucesso:**`201 CREATED`
+
+  Casa cadastrada com sucesso.
+
+* **Corpo da resposta:**
+
+  ```json
+  {
+      "id":2,
+      "home_name": "Casa 2",
+      "address": "Endereço",
+      "responsavel":"name",
+      "aluguel":200,
+      "foto":"foto.png"
+  }
+  ```
+
+* **Código de resposta de erro:**`400 BAD REQUEST`
+
+  Algum campo obrigatório não foi enviado no corpo da requisição.
+
+* **Corpo da resposta:**
+
+  ```json
+  {
+  	"error":"Atributos obrigatórios - home_name, address, responsavel e aluguel"
+  }
+  ```
+
+  
+
+#### PUT /home
+
+Executa a alteração do dados da Casa no servidor. O corpo da requisição deve conter os parâmetros para alteração em formato `application/json`. 
+
+* **Requisitos:**
+
+  É obrigatório o envio do atributo `id` no corpo da requisição.
+
+* **Corpo da requisição:**
+  ```json 
+  {
+      "id":1,
+      "home_name": "Casa 1",
+	    "aluguel":300,
+      "foto":"foto.png"
+  }
+  ```
+
+* **Código de resposta de sucesso:**`204 NO CONTENT`
+
+  Casa atualizada com sucesso. Sem corpo de resposta.
+
+* **Código de resposta de erro:**`404 NOT FOUND`
+
+  Se a Casa com id informado não for encontrada.
+
+* **Corpo da resposta:**
+
+  ```json
+  {
+  	"error":"Casa não encontrada"
+  }
+  ```
+
+* **Código de resposta de erro:**`400 BAD REQUEST`
+
+  Se o atributo obrigatório não foi informado no corpo da requisição.
+
+* **Corpo da resposta:**
+
+  ```json
+  {
+  	"error":"Atributo id obrigatório"
+  }
+  ```
+
+***
 ## 5. Conta
 
 Gerenciar informações da Conta do Usuário
 
-Endpoint: **`/api/conta`**
+Endpoint: **`/account`**
 
 
 
-#### GET /api/conta/{user}
+#### GET /account/
 
-Recuperar as informações da Conta do usuário informado pelo parâmetro {user}. Retorna os dados em formato `application/json`.
+Recuperar as informações da Conta do usuário autenticado. Retorna os dados em formato `application/json`.
 
-```json
-[
-    {
-    	"id":1,
-    	"user_cred": "User",
-    	"valor": 10,
-    	"pago":true,
-	},
-    {
-    	"id":2,
-    	"user_cred": "User x",
-    	"valor": 25,
-    	"pago":false,
-	}
-]
-```
+* **Requisitos:**
+
+  Token de autenticação enviado no cabeçalho da requisição.
+
+* **Código de resposta de sucesso:**`200 OK`
+
+  Contas dos usuários encontradas com sucesso.
+
+* **Corpo da resposta:**
+
+  ```json
+  [
+      {
+        "id":1,
+    	  "id_user_cred": 4,
+    	  "valor": 10,
+    	  "pago":true,
+	  },
+      {
+    	  "id":2,
+    	  "id_user_cred": 3,
+    	  "valor": 25,
+    	  "pago":false,
+	  }
+  ]
+  ```
+  
+* **Código de resposta de erro:**`404 NOT FOUND`
+
+  Caso o usuário autenticado ainda não possua nenhuma conta.
+
+* **Corpo da resposta:**
+
+  ```json
+  {
+  	"error":"Conta não encontrada"
+  }
+  ```
 
 
 
-#### UPDATE /api/conta
+#### PUT /account
 
 Executa a alteração nas informações da Conta do Usuário. O corpo da requisição contém todos os parâmetros para alteração em formato `application/json`. 
 
-```json
-{
-   	"id":2,
-   	"user_cred": "User x",
-   	"valor": 25,
-  	"pago":true,
-}
-```
+* **Requisitos:**
 
+  O atributo `id` da conta é obrigatório no corpo da requisição.
 
+* **Corpo da requisição:**
 
+  ```json
+  {
+   	  "id":2,
+   	  "valor": 25,
+  	  "pago":true,
+  }
+  ```
+
+* **Código de resposta de sucesso:**`204 NO CONTENT`
+
+  Conta atualizada com sucesso. Sem corpo de resposta.
+
+* **Código de resposta de erro:**`404 NOT FOUND`
+
+  Se a Conta com `id` informado não for encontrada.
+
+* **Corpo da resposta:**
+
+  ```json
+  {
+  	"error":"Conta não encontrada"
+  }
+  ```
+
+* **Código de resposta de erro:**`400 BAD REQUEST`
+
+  Se o atributo obrigatório não foi informado no corpo da requisição.
+
+* **Corpo da resposta:**
+
+  ```json
+  {
+  	"error":"Atributo id obrigatório"
+  }
+  ```
 ***
 
 
@@ -673,38 +811,138 @@ Executa a alteração nas informações da Conta do Usuário. O corpo da requisi
 
 Gerenciar informações das Regras da Casa
 
-Endpoint: **`/api/rules`**
+Endpoint: **`/rules`**
 
 
 
-#### GET /api/rules/{home_id}
+#### GET /rules/{home_id}
 
 Recuperar as regras da Casa informado pelo parâmetro {home_id}. Retorna os dados em formato `application/json`.
 
-```json
-{
-    "id_regras":1,
-    "id_home":4,
-   	"Regra 1":"Porta sempre trancada",
-    "Regra 2":"Não execução da tarefa acrescenta 10 reais no aluguel"
-}
-```
+* **Requisitos:**
+
+  Token de autenticação enviado no cabeçalho da requisição.
+
+* **Código de reposta de sucesso:**`200 OK`
+
+  Regras encontradas com sucesso.
+
+* **Corpo da resposta:**
+
+  ```json
+  [
+      {
+        "id_regra":1,
+        "id_home":4,
+        "descricao":"Porta sempre trancada"
+      },
+      {
+    	  "id_regra":2,
+        "id_home":4,
+        "descricao":"Tarefa não executada acrescenta 10 reais no aluguel"
+      }
+  ]
+  ```
+
+* **Código de resposta de erro:**`404 NOT FOUND`
+
+  Regras não encontradas de acordo com o parâmetro informado na URL da requisição.
+
+* **Corpo da resposta:**
+
+  ```Json
+  {
+  	"error":"Regras não encontradas"
+  }
+  ```
+
+#### POST /rules
+
+Executa o cadastro de uma nova regra na Casa. O corpo da requisição contém todos os parâmetros para cadastro da Regra em formato `application/json`. Retorna os dados em formado `json` da nova Regra cadastrada.
+
+* **Requisitos:**
+
+  Os seguintes atributos são obrigatórios no corpo da requisição: `id_home` e `descricao`.
+
+* **Corpo da requisição:**
+
+  ```json
+  {
+      "id_home":4,
+      "descricao":"Nova regra"
+  }
+	```
+  
+* **Código de resposta de sucesso:**`201 CREATED`
+
+  Casa cadastrada com sucesso.
+
+* **Corpo da resposta:**
+
+  ```json
+  {
+      "id_regra":3,
+      "id_home":4,
+      "descricao":"nova regra"
+  }
+  ```
+  
+* **Código de resposta de erro:**`400 BAD REQUEST`
+
+  Algum campo obrigatório não foi enviado no corpo da requisição.
+
+* **Corpo da resposta:**
+
+  ```json
+  {
+  	"error":"Atributos obrigatórios - id_home e descricao"
+  }
+  ```
 
 
 
-#### UPDATE /api/rules
+#### PUT /rules
 
-Executa a alteração nas regras da Casa. O corpo da requisição contém todos os parâmetros para alteração em formato `application/json`. 
+Executa a alteração nas informações das regras da Casa. O corpo da requisição contém todos os parâmetros para alteração em formato `application/json`. 
 
-```json
-{
-    "id_regras":1,
-    "id_home":4,
-   	"Regra 1":"Porta sempre trancada",
-    "Regra 2":"Não execução da tarefa acrescenta 30 reais no aluguel"
-}
-```
+* **Requisitos:**
 
-```
+  O atributo `id_regra`  e `id_home` são obrigatórios no corpo da requisição.
 
-```
+* **Corpo da requisição:**
+
+  ```json
+  {
+   	  "id_regra":2,
+        "id_home":4,
+        "descricao":"Tarefa não executada acrescenta 20 reais no aluguel"
+  }
+  ```
+
+* **Código de resposta de sucesso:**`204 NO CONTENT`
+
+  Regra atualizada com sucesso. Sem corpo de resposta.
+
+* **Código de resposta de erro:**`404 NOT FOUND`
+
+  Se a Regra com `id_regra` informado não for encontrada.
+
+* **Corpo da resposta:**
+
+  ```json
+  {
+  	"error":"Regra não encontrada"
+  }
+  ```
+
+* **Código de resposta de erro:**`400 BAD REQUEST`
+
+  Se o atributo obrigatório não foi informado no corpo da requisição.
+
+* **Corpo da resposta:**
+
+  ```json
+  {
+  	"error":"Atributos id_regra e id_home são obrigatórios"
+  }
+  ```
