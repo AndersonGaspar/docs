@@ -96,7 +96,7 @@ Executa o registro de um novo usuário no servidor. O corpo da requisição cont
 
 * **Corpo da requisição:**
 	
-	```json
+  ```json
   {
       "full_name": "username",
       "cpf": "123.456.789-00",
@@ -105,8 +105,8 @@ Executa o registro de um novo usuário no servidor. O corpo da requisição cont
       "telephone":"9999-9999",
 	  "genre":"male",
       "date_nasc":"01/01/1900"
-	}
-	```
+  }
+  ```
 
 * **Código de resposta de sucesso:**`201 CREATED`
 
@@ -114,7 +114,7 @@ Executa o registro de um novo usuário no servidor. O corpo da requisição cont
 
 * **Corpo da resposta:**
 
-	```json
+  ```json
   {
       "id": 1,
       "full_name": "username",
@@ -124,7 +124,7 @@ Executa o registro de um novo usuário no servidor. O corpo da requisição cont
       "genre":"male",
       "date_nasc":"01/01/1900"
   }
-	```
+  ```
 	
 * **Código de resposta de erro:**`400 BAD REQUEST`
 
@@ -356,7 +356,7 @@ Executa a alteração dos dados tarefa no servidor. O corpo da requisição deve
 * **Corpo da requisição:**
 
   ```json
-{
+  {
     "id":5,
     "status":"finalizada",
     "Comentarios":[
@@ -365,7 +365,7 @@ Executa a alteração dos dados tarefa no servidor. O corpo da requisição deve
             "comentario2":"OK"
         }
     ]
-}
+  }
   ```
 
 * **Código de resposta de sucesso:**`204 NO CONTENT`
