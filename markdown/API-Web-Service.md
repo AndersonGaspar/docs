@@ -34,17 +34,19 @@ Caso o usuário autenticado não tenha permissão para efetuar a requisição.
 }
 ```
 
+Endpoint Geral: `/api/v1/hometasks`
+
 
 
 ## 1. Usuário
 
 Gerenciar informações sobre o usuário e verificar informações dos demais usuários.
 
-Endpoint: **`/api/v1/user`**
+Endpoint: **`/users`**
 
 
 
-#### GET /api/v1/user/{name or email}
+#### GET /users/{name or email}
 
 Recuperar as informações do usuário solicitado por {name} ou {email} enviado na URL. Retorna os dados em formato `application/json`.
 
@@ -84,7 +86,7 @@ Recuperar as informações do usuário solicitado por {name} ou {email} enviado 
 
 
 
-#### POST /api/v1/user
+#### POST /users
 
 Executa o registro de um novo usuário no servidor. O corpo da requisição contém todos os parâmetros do Usuário em formato `application/json`. Retorna também em formato `application/json ` os dados, incluindo `id`, do Usuário recém criado.
 
@@ -150,7 +152,7 @@ Executa o registro de um novo usuário no servidor. O corpo da requisição cont
 
   
 
-#### POST /api/v1/login
+#### POST /login
 
 Realiza a autenticação do usuário junto ao servidor. Necessário o envio do `login` e `password` codificados em base 64 no cabeçalho da requisição: `Authorization: Basic <Base64(login:password)>`. Retorna o token de autenticação (JWT) caso a autenticação tenha ocorrido com sucesso.
 
@@ -184,7 +186,7 @@ Realiza a autenticação do usuário junto ao servidor. Necessário o envio do `
 
   
 
-#### PUT /api/v1/user
+#### PUT /users
 
 Executa a alteração do dados do usuário no servidor. O corpo da requisição deve conter todos os parâmetros do Usuário que deseja ser alterado em formato `application/json`. 
 
@@ -225,7 +227,7 @@ Executa a alteração do dados do usuário no servidor. O corpo da requisição 
 
   ```json
   {
-  	"error": "Atributo Obrigatório:id"
+  	"error": "Atributo id obrigatório"
   }
   ```
 
@@ -238,92 +240,175 @@ Executa a alteração do dados do usuário no servidor. O corpo da requisição 
 
 Gerenciar informações sobre as tarefas
 
-Endpoint: **`/api/task`**
+Endpoint: **`/tasks`**
 
 
 
-#### GET /api/task/{user}
+#### GET /tasks
 
-Recuperar as tarefas relacionadas ao usuário informado pelo parâmetro {user}. Retorna os dados em formato `application/json`.
+Recuperar as tarefas com status `aberta` relacionadas ao usuário autenticado e as tarefas com status `finalizada` da Casa para avaliação. Retorna uma lista de tarefas no formato `application/json`.
 
-```json
-[
-	{
-    	"id":1,
-    	"task_name": "lavar louça",
-    	"description": "Lavar louça do almoço todos os dias",
-    	"user":"usename",
-        "status":"aberta",
-		"date_limit":"01/01/1900 23:23",
-        "Pontos":60
-	},
-    {
-    	"id":2,
-    	"task_name": "recolher lixo",
-    	"description": "recolher lixo da casa",
-        "status":"finalizada",
-    	"user":"usename",
-		"date_limit":"01/01/1900 23:23",
-        "Pontos":60
-    }
-]
-```
+* **Requisitos:**
 
+  Token de autenticação enviado no cabeçalho.
 
+* **Código de resposta de sucesso:**`200 OK`
 
-#### POST /api/task
+  Tarefas relacionadas ao usuário encontradas.
+* **Corpo da resposta:**
+	
+  ```json
+  [
+  	{
+    		"id":1,
+    		"task_name": "lavar louça",
+    		"description": "Lavar louça do almoço todos os dias",
+	  		"user_id":1,
+    		"status":"aberta",
+		    "date_limit":"01/01/1900 23:23",
+	  		"Pontos":60
+		},
+	    {
+	    	"id":2,
+	    	"task_name": "recolher lixo",
+	    	"description": "recolher lixo da casa",
+	        "status":"finalizada",
+	    	"user_id":3,
+			"date_limit":"01/01/1900 23:23",
+	        "Pontos":60
+	    }
+	]
+  ```
 
-Executa o cadastro de uma nova tarefa no servidor. O corpo da requisição contém todos os parâmetros da tarefa em formato `application/json`.
+* **Código de resposta de erro:** `404 NOT FOUND`
 
-```json
+  Caso o usuário autenticado não possua nenhuma tarefa com status `aberta` ou não possuir nenhuma tarefa com status `finalizada` para avalização.
+
+* **Corpo da resposta:**
+
+  ```json
+  {
+  	"error":"Nenhuma tarefa encontrada"
+  }
+  ```
+
+  
+
+#### POST /tasks
+
+Executa o cadastro de uma nova tarefa no servidor. O corpo da requisição contém todos os parâmetros da tarefa em formato `application/json`. Retorna os dados da tarefa em `json` caso sejá criada com sucesso.
+
+* **Requisitos:**
+
+  Os atributos `task_name` e `user_id` são obrigatórios no corpo da requisição.
+
+* **Corpo da requisição:**
+
+  ```json
 {
-    "task_name": "recolher lixo",
-    "description": "recolher lixo da casa",
-    "user":"usename",
-	"date_limit":"01/01/1900 23:23",
-    "Pontos":60
+      "task_name": "recolher lixo",
+      "description": "recolher lixo da casa",
+      "user_id":1,
+	    "date_limit":"01/01/1900 23:23",
+      "Pontos":60
 }
-```
+  ```
 
+* **Código de resposta de sucesso:**`201 CREATED`
 
+  Tarefa criada com sucesso.
 
-#### UPDATE /api/task
+* **Corpo da resposta:**
 
-Executa a alteração do dados do usuário no servidor. O corpo da requisição contém todos os parâmetros da tarefa em formato `application/json`. Método chamado na edição, finalização e pontuação da tarefa.
+  ```json
+  {
+  	"id":5,
+      "task_name": "recolher lixo",
+      "description": "recolher lixo da casa",
+      "status":"finalizada",
+      "user_id":3,
+  	"date_limit":"01/01/1900 23:23",
+      "Pontos":60
+  }
+  ```
 
-```json
+* **Código de resposta de erro:**`400 BAD REQUEST`
+
+  Caso algum atributo obrigatório não tenha sido enviado no corpo da requisição.
+
+* **Corpo da resposta:**
+
+  ```json
+  {
+  	"error": "Atributos Obrigatórios:task_name e user_id"
+  }
+  ```
+
+  
+#### PUT /tasks
+
+Executa a alteração dos dados tarefa no servidor. O corpo da requisição deve conter todos os parâmetros da tarefa que serão atualizado em formato `application/json`.
+
+* **Requisitos:**
+
+  O atributo `id` da tarefa é obrigatório no corpo da requisição.
+
+* **Corpo da requisição:**
+
+  ```json
 {
-    "id":1,
-    "task_name": "lavar louça",
-    "description": "Lavar louça do almoço todos os dias",
-    "user":"usename",
+    "id":5,
     "status":"finalizada",
-	"date_limit":"01/01/1900 23:23",
-    "Pontos":60,
     "Comentarios":[
     	{
             "comentario1":"Tarefa bem realizada",
-             "comentario2":"OK"
+            "comentario2":"OK"
         }
     ]
 }
-```
+  ```
 
+* **Código de resposta de sucesso:**`204 NO CONTENT`
 
+  Tarefa atualizada com sucesso. Sem corpo de resposta.
 
-***
+* **Código de resposta de erro:**`404 NOT FOUND`
+
+  Tarefa não encontrada para atualização.
+
+* **Corpo da resposta:**
+
+  ```json
+  {
+  	"error":"Tarefa não encontrada"
+  }
+  ```
+
+* **Código de resposta de erro:**`400 BAD REQUEST`
+
+  Atributo `id` não informado no corpo da requisição.
+
+* **Corpo da resposta:**
+
+  ```json
+  {
+  	"error":"Atributo id obrigatório"
+  }
+  ```
+
+  
 
 
 
 ## 3. Rotina
 
-Gerenciar informações das Rotinas
+Gerenciar informações das Rotinas do usuário
 
-Endpoint: **`/api/routine`**
+Endpoint: **`/routines`**
 
 
 
-#### GET /api/routine/{user}
+#### GET /routines
 
 Recuperar as rotinas relacionadas ao usuário informado pelo parâmetro {user}. Retorna os dados em formato `application/json`.
 
