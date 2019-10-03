@@ -62,13 +62,13 @@ Recuperar as informações do usuário solicitado por {name} ou {email} enviado 
 
   ```json
   {
-      "id": 1,
-      "full_name": "username",
-      "cpf": "123.456.789-00",
-      "login":"login",
-      "telephone":"9999-9999",
-      "genre":"male",
-      "date_nasc":"01/01/1900"
+  	"id": 1,
+  	"full_name": "username",
+  	"cpf": "123.456.789-00",
+  	"login":"login",
+  	"telephone":"9999-9999",
+  	"genre":"male",
+  	"date_nasc":"01/01/1900"
   }
   ```
 
@@ -98,13 +98,13 @@ Executa o registro de um novo usuário no servidor. O corpo da requisição cont
 	
   ```json
   {
-      "full_name": "username",
-      "cpf": "123.456.789-00",
-      "login":"login",
-      "password":"password",
-      "telephone":"9999-9999",
-      "genre":"male",
-      "date_nasc":"01/01/1900"
+  	"full_name": "username",
+  	"cpf": "123.456.789-00",
+  	"login":"login",
+  	"password":"password",
+  	"telephone":"9999-9999",
+  	"genre":"male",
+  	"date_nasc":"01/01/1900"
   }
   ```
 
@@ -116,13 +116,13 @@ Executa o registro de um novo usuário no servidor. O corpo da requisição cont
 
   ```json
   {
-      "id": 1,
-      "full_name": "username",
-      "cpf": "123.456.789-00",
-      "login":"login",
-      "telephone":"9999-9999",
-      "genre":"male",
-      "date_nasc":"01/01/1900"
+  	"id": 1,
+  	"full_name": "username",
+  	"cpf": "123.456.789-00",
+  	"login":"login",
+  	"telephone":"9999-9999",
+  	"genre":"male",
+  	"date_nasc":"01/01/1900"
   }
   ```
 	
@@ -168,7 +168,7 @@ Realiza a autenticação do usuário junto ao servidor. Necessário o envio do `
 
   ```json
   {
-     "token":"eyJhbGciOiJIUzI1NiIs.eyJ1bmlxdWVfbmFtZSI6IlR.SmjuyXgloA2RUhIlAEetrQwfC0Eh"
+  	"token":"eyJhbGciOiJIUzI1NiIs.eyJ1bmlxdWVfbmFtZSI6IlR.SmjuyXgloA2RUhIlAEetrQwfC0Eh"
   }
   ```
 
@@ -198,8 +198,8 @@ Executa a alteração do dados do usuário no servidor. O corpo da requisição 
 
   ```json
   {
-      "id":1,
-      "telephone":"8888-9999"
+  	"id":1,
+  	"telephone":"8888-9999"
   }
   ```
 
@@ -260,23 +260,23 @@ Recuperar as tarefas com status `aberta` relacionadas ao usuário autenticado e 
   ```json
   [
   	{
-    		"id":1,
-    		"task_name": "lavar louça",
-    		"description": "Lavar louça do almoço todos os dias",
-	  	"user_id":1,
-    		"status":"aberta",
-		"date_limit":"01/01/1900 23:23",
-	  	"Pontos":60
-	},
-	{
-	    	"id":2,
-	    	"task_name": "recolher lixo",
-	    	"description": "recolher lixo da casa",
-	        "status":"finalizada",
-	    	"user_id":3,
-		"date_limit":"01/01/1900 23:23",
-	        "Pontos":60
-	}
+  		"id":1,
+  		"task_name": "lavar louça",
+  		"description": "Lavar louça do almoço todos os dias",
+  		"user_id":1,
+  		"status":"aberta",
+  		"date_limit":"01/01/1900 23:23",
+  		"Pontos":60
+  	},
+  	{
+  		"id":2,
+  		"task_name": "recolher lixo",
+  		"description": "recolher lixo da casa",
+  		"status":"finalizada",
+  		"user_id":3,
+  		"date_limit":"01/01/1900 23:23",
+  		"Pontos":60
+  	}
   ]
   ```
 
@@ -306,11 +306,11 @@ Os atributos `task_name` e `user_id` são obrigatórios no corpo da requisição
 
   ```json
   {
-      "task_name": "recolher lixo",
-      "description": "recolher lixo da casa",
-      "user_id":1,
-      "date_limit":"01/01/1900 23:23",
-      "Pontos":60
+  	"task_name": "recolher lixo",
+  	"description": "recolher lixo da casa",
+  	"user_id":1,
+  	"date_limit":"01/01/1900 23:23",
+  	"Pontos":60
   }
   ```
 
@@ -323,12 +323,12 @@ Os atributos `task_name` e `user_id` são obrigatórios no corpo da requisição
   ```json
   {
   	"id":5,
-        "task_name": "recolher lixo",
-        "description": "recolher lixo da casa",
-        "status":"finalizada",
-        "user_id":3,
+  	"task_name": "recolher lixo",
+  	"description": "recolher lixo da casa",
+  	"status":"finalizada",
+  	"user_id":3,
   	"date_limit":"01/01/1900 23:23",
-        "Pontos":60
+  	"Pontos":60
   }
   ```
 
@@ -358,14 +358,14 @@ Executa a alteração dos dados tarefa no servidor. O corpo da requisição deve
   ```json
   {
   	"id":5,
-    	"status":"finalizada",
-    	"Comentarios":
-	[
-    		{
-            		"comentario1":"Tarefa bem realizada",
-            		"comentario2":"OK"
-        	}
-    	]
+  	"status":"finalizada",
+  	"Comentarios":
+  	[
+  		{
+  			"comentario1":"Tarefa bem realizada",
+  			"comentario2":"OK"
+  		}
+  	]
   }
   ```
 
@@ -422,23 +422,23 @@ Recuperar as rotinas relacionadas ao usuário autenticado. Retorna os dados em f
 * **Corpo da resposta:**
   ```json
   [
-	{
-    		"id":1,
-    		"routine_name": "Rotina 1",
-    		"description": "Descrição da rotina",
-    		"days":"seg,ter,qui",
-		"hour_limit":"23:23",
-        	"responsavel":"alternar",
-        	"date_val":"01/01/2000"
-	},
-    	{
-    		"id":2,
-    		"routine_name": "Rotina 2",
-    		"description": "Descrição da rotina 2",
-    		"days":"seg,sex",
-		"hour_limit":"23:23",
-          	"responsavel":"todos",
-        	"date_val":"01/01/2000"
+  	{
+  		"id":1,
+  		"routine_name": "Rotina 1",
+  		"description": "Descrição da rotina",
+  		"days":"seg,ter,qui",
+  		"hour_limit":"23:23",
+  		"responsavel":"alternar",
+  		"date_val":"01/01/2000"
+  	},
+  	{
+  		"id":2,
+  		"routine_name": "Rotina 2",
+  		"description": "Descrição da rotina 2",
+  		"days":"seg,sex",
+  		"hour_limit":"23:23",
+  		"responsavel":"todos",
+  		"date_val":"01/01/2000"
   	}
   ]
   ```
@@ -469,11 +469,11 @@ Executa o cadastro de uma nova rotina no servidor. O corpo da requisição cont�
   ```json
   {
   	"routine_name": "Rotina 2",
-        "description": "Descrição da rotina 2",
-        "days":"seg,sex",
-	"hour_limit":"23:23",
-        "responsavel":"todos",
-        "date_val":"01/01/2000"
+  	"description": "Descrição da rotina 2",
+  	"days":"seg,sex",
+  	"hour_limit":"23:23",
+  	"responsavel":"todos",
+  	"date_val":"01/01/2000"
   }
   ```
 
@@ -486,12 +486,12 @@ Executa o cadastro de uma nova rotina no servidor. O corpo da requisição cont�
   ```json
   {
   	"id":3,
-    	"routine_name": "Rotina 2",
-    	"description": "Descrição da rotina 2",
-    	"days":"seg,sex",
+  	"routine_name": "Rotina 2",
+  	"description": "Descrição da rotina 2",
+  	"days":"seg,sex",
   	"hour_limit":"23:23",
-        "responsavel":"todos",
-        "date_val":"01/01/2000"
+  	"responsavel":"todos",
+  	"date_val":"01/01/2000"
   }
   ```
 
@@ -521,12 +521,12 @@ Executa a alteração do dados da rotina no servidor. Os atributos que irão ser
   ```json
   {
   	"id":2,
-        "routine_name": "Rotina 2",
-        "description": "Descrição da rotina 2",
-        "days":"seg,sex",
-        "hour_limit":"23:23",
-        "responsavel":"todos",
-        "date_val":"01/01/2000"
+  	"routine_name": "Rotina 2",
+  	"description": "Descrição da rotina 2",
+  	"days":"seg,sex",
+  	"hour_limit":"23:23",
+  	"responsavel":"todos",
+  	"date_val":"01/01/2000"
   }
   ```
   
@@ -587,11 +587,11 @@ Recuperar as informações da casa solicitada pelo parâmetro {name_home}. Retor
   ```json
   {
   	"id":1,
-        "home_name": "Casa 1",
-        "address": "Endereço",
-        "responsavel":"name",
-        "aluguel":200,
-        "foto":"foto.png"
+  	"home_name": "Casa 1",
+  	"address": "Endereço",
+  	"responsavel":"name",
+  	"aluguel":200,
+  	"foto":"foto.png"
   } 
   ```
 
@@ -621,10 +621,10 @@ Executa o cadastro de uma nova Casa no servidor. O corpo da requisição contém
   ```json
   {
   	"home_name": "Casa 2",
-        "address": "Endereço 2",
-        "responsavel":"name",
-	"aluguel":200,
-        "foto":"foto.png"
+  	"address": "Endereço 2",
+  	"responsavel":"name",
+  	"aluguel":200,
+  	"foto":"foto.png"
   }
   ```
 
@@ -637,11 +637,11 @@ Executa o cadastro de uma nova Casa no servidor. O corpo da requisição contém
   ```json
   {
   	"id":2,
-        "home_name": "Casa 2",
-        "address": "Endereço",
-        "responsavel":"name",
-        "aluguel":200,
-        "foto":"foto.png"
+  	"home_name": "Casa 2",
+  	"address": "Endereço",
+  	"responsavel":"name",
+  	"aluguel":200,
+  	"foto":"foto.png"
   }
   ```
 
@@ -671,9 +671,9 @@ Executa a alteração do dados da Casa no servidor. O corpo da requisição deve
   ```json 
   {
   	"id":1,
-        "home_name": "Casa 1",
-	"aluguel":300,
-        "foto":"foto.png"
+  	"home_name": "Casa 1",
+  	"aluguel":300,
+  	"foto":"foto.png"
   }
   ```
 
@@ -731,17 +731,17 @@ Recuperar as informações da Conta do usuário autenticado. Retorna os dados em
   ```json
   [
   	{
-        	"id":1,
-    	  	"id_user_cred": 4,
-    	  	"valor": 10,
-    	  	"pago":true,
-	},
-        {
-    		"id":2,
-    		"id_user_cred": 3,
-    		"valor": 25,
-    		"pago":false,
-	}
+  		"id":1,
+  		"id_user_cred": 4,
+  		"valor": 10,
+  		"pago":true,
+  	},
+  	{
+  		"id":2,
+  		"id_user_cred": 3,
+  		"valor": 25,
+  		"pago":false,
+  	}
   ]
   ```
   
@@ -772,7 +772,7 @@ Executa a alteração nas informações da Conta do Usuário. O corpo da requisi
   ```json
   {
   	"id":2,
-   	"valor": 25,
+  	"valor": 25,
   	"pago":true,
   }
   ```
@@ -833,15 +833,15 @@ Recuperar as regras da Casa informado pelo parâmetro {home_id}. Retorna os dado
   ```json
   [
   	{
-        	"id_regra":1,
-        	"id_home":4,
-        	"descricao":"Porta sempre trancada"
-      	},
-      	{
-    		"id_regra":2,
-        	"id_home":4,
-        	"descricao":"Tarefa não executada acrescenta 10 reais no aluguel"
-        }
+  		"id_regra":1,
+  		"id_home":4,
+  		"descricao":"Porta sempre trancada"
+  	},
+  	{
+  		"id_regra":2,
+  		"id_home":4,
+  		"descricao":"Tarefa não executada acrescenta 10 reais no aluguel"
+  	}
   ]
   ```
 
@@ -870,7 +870,7 @@ Executa o cadastro de uma nova regra na Casa. O corpo da requisição contém to
   ```json
   {
   	"id_home":4,
-        "descricao":"Nova regra"
+  	"descricao":"Nova regra"
   }
   ```
   
@@ -883,8 +883,8 @@ Executa o cadastro de uma nova regra na Casa. O corpo da requisição contém to
   ```json
   {
   	"id_regra":3,
-      	"id_home":4,
-      	"descricao":"nova regra"
+  	"id_home":4,
+  	"descricao":"nova regra"
   }
   ```
   
@@ -915,8 +915,8 @@ Executa a alteração nas informações das regras da Casa. O corpo da requisiç
   ```json
   {
   	"id_regra":2,
-        "id_home":4,
-        "descricao":"Tarefa não executada acrescenta 20 reais no aluguel"
+  	"id_home":4,
+  	"descricao":"Tarefa não executada acrescenta 20 reais no aluguel"
   }
   ```
 
