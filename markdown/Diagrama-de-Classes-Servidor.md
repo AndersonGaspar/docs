@@ -1,6 +1,6 @@
 ### Diagrama de Classes do Servidor
 
-* **POJO: **
+* **POJO:**
 
 ![pojo](../images/class_diagram_POJO.png)
 
