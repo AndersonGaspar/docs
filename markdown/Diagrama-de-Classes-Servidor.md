@@ -8,3 +8,6 @@
 
 ![dao](../images/class_diagram_DAO.png)
 
+* **Controller**
+
+![controller](../images/class_diagram_Controller.png)
