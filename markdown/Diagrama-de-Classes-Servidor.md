@@ -2,11 +2,11 @@
 
 * **POJO:**
 
-![pojo](../images/class_diagram_POJO.png)
+![pojo](../images/pojoDiagram.png)
 
 * **DAO:**
 
-![dao](../images/class_diagram_DAO.png)
+![dao](../images/daoDiagram.png)
 
 * **Controller**
 
