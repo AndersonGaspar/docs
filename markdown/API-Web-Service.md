@@ -98,14 +98,17 @@ Executa o registro de um novo usuário no servidor. O corpo da requisição cont
 	
   ```json
   {
-  	"full_name": "username",
-  	"cpf": "123.456.789-00",
-  	"login":"login",
-  	"password":"password",
-  	"telephone":"9999-9999",
-  	"genre":"male",
-  	"date_nasc":"01/01/1900"
-  }
+	"idUsuario":"luluzinha",
+	"nome":"Luiza",
+	"data":"1996-12-30",
+	"genero":"feminino",
+	"pontos":0,
+	"telefone":"96485983",
+	"senha":"******",
+	"email":"l.uhzinha@hotmail.com",
+	"perfil":"sem teto",
+	"idCasa":0
+}
   ```
 
 * **Código de resposta de sucesso:**`201 CREATED`
@@ -198,9 +201,18 @@ Executa a alteração do dados do usuário no servidor. O corpo da requisição 
 
   ```json
   {
-  	"id":1,
-  	"telephone":"8888-9999"
-  }
+    "idUsuario": "felipe0",
+    "nome": "felipe",
+    "data": "1996-12-30",
+    "genero": "ddddddddddd",
+    "pontos": 0,
+    "telefone": "96485983",
+    "senha": "tuts",
+    "email": "xxx@hotmail.com",
+    "perfil": "com teto",
+    "idCasa": 0,
+    "foto": null
+}
   ```
 
 * **Código de resposta de sucesso:**`204 NO CONTENT`
