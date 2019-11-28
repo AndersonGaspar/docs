@@ -1,18 +1,18 @@
 # Documentação da API do Web Service
 
-> O documento descreve a forma de utilização da API REST do Serviço Web fornecido pelo servidor da solução Home Tasks. 
+> O documento descreve API REST do Serviço Web fornecido pela solução Home Tasks. 
 
 ***
 
-**OBS.:** Todas as requisições efetuadas necessitam que o usuário esteja previamente autenticado. Por isso o envio de um JWT (JSON Web Token), retornado do processo de autenticação, no cabeçalho é `OBRIGATÓRIO`. `Authorization: Bearer <JWT>`
+**OBS.:** Todas as requisições efetuadas, com exceção do Registro, necessitam que o usuário esteja previamente autenticado. Por isso o envio de um Token, retornado do processo de autenticação, no cabeçalho é `OBRIGATÓRIO`. `token: "token"`
 
 ***
 
-Os seguintes erros podem ser retornados em qualquer requisição caso o Usuário não esteja autenticado ou não tenha permissão.
+Os seguintes erros podem ser retornados em qualquer requisição, que necessite de autenticação, caso o Usuário não informe o token ou não tenha permissão.
 
 **Código de resposta de erro:**`401 UNAUTHORIZED`
 
-Quando é feita a requisição sem informar o token de autenticação no cabeçalho.
+Quando é feita a requisição sem informar o token ou o mesmo não é válido.
 
 **Corpo da resposta:**
 
@@ -24,7 +24,7 @@ Quando é feita a requisição sem informar o token de autenticação no cabeça
 
 **Código de resposta de erro:**`403 FORBIDDEN`
 
-Caso o usuário autenticado não tenha permissão para efetuar a requisição.
+Caso o usuário autenticado tenha um token válido, mas não tenha permissão para efetuar a requisição.
 
 **Corpo da resposta:**
 
@@ -34,134 +34,24 @@ Caso o usuário autenticado não tenha permissão para efetuar a requisição.
 }
 ```
 
-Endpoint Geral: `/api/v1/hometasks`
+
+
+**URL Base:** `/hometasks/api/v1/`
 
 
 
-## 1. Usuário
+## Autenticação
 
-Gerenciar informações sobre o usuário e verificar informações dos demais usuários.
+Endpoint: **`/login`**
 
-Endpoint: **`/users`**
-
-
-
-#### GET /users/{name or email}
-
-Recuperar as informações do usuário solicitado por {name} ou {email} enviado na URL. Retorna os dados em formato `application/json`.
-
-* **Requisitos:**
-
-  Token de autenticação (JWT) enviado no cabeçalho da requisição.
-
-* **Código de resposta de sucesso:**`200 OK`
-
-  Usuário encontrado.
-
-* **Corpo da resposta:**
-
-  ```json
-  {
-  	"id": 1,
-  	"full_name": "username",
-  	"cpf": "123.456.789-00",
-  	"login":"login",
-  	"telephone":"9999-9999",
-  	"genre":"male",
-  	"date_nasc":"01/01/1900"
-  }
-  ```
-
-* **Código de resposta de erro:**`404 NOT FOUND`
-
-  Usuário não encontrado de acordo com os dados informados na URL da requisição.
-
-* **Corpo da resposta:**
-
-  ```json
-  {
-  	"error": "Usuário não encontrado"
-  }
-  ```
-
-
-
-#### POST /users
-
-Executa o registro de um novo usuário no servidor. O corpo da requisição contém todos os parâmetros do Usuário em formato `application/json`. Retorna também em formato `application/json ` os dados, incluindo `id`, do Usuário recém criado.
-
-* **Requisitos:**
-
-  Os seguintes atributos são obrigatórios no corpo da requisição:`full_name`, `cpf`, `login` e `password` 	
-
-* **Corpo da requisição:**
-	
-  ```json
-  {
-	"idUsuario":"luluzinha",
-	"nome":"Luiza",
-	"data":"1996-12-30",
-	"genero":"feminino",
-	"pontos":0,
-	"telefone":"96485983",
-	"senha":"******",
-	"email":"l.uhzinha@hotmail.com",
-	"perfil":"sem teto",
-	"idCasa":0
-}
-  ```
-
-* **Código de resposta de sucesso:**`201 CREATED`
-
-  Usuário criado com sucesso.
-
-* **Corpo da resposta:**
-
-  ```json
-  {
-  	"id": 1,
-  	"full_name": "username",
-  	"cpf": "123.456.789-00",
-  	"login":"login",
-  	"telephone":"9999-9999",
-  	"genre":"male",
-  	"date_nasc":"01/01/1900"
-  }
-  ```
-	
-* **Código de resposta de erro:**`400 BAD REQUEST`
-
-  Quando algum campo obrigatório não foi informado no corpo da solicitação. 
-
-* **Corpo da resposta:**
-
-  ```json
-  {
-  	"error": "Atributos Obrigatórios - full_name, cpf, login e password"
-  }
-  ```
-
-* **Código de resposta de erro:**`409 CONFLICT`
-
-  Quando já existe um usuário com mesmo login registrado.
-
-* **Corpo da resposta:**
-
-  ```json
-  {
-  	"error": "Login já existe"
-  }
-  ```
-
-  
 
 #### POST /login
 
-Realiza a autenticação do usuário junto ao servidor. Necessário o envio do `login` e `password` codificados em base 64 no cabeçalho da requisição: `Authorization: Basic <Base64(login:password)>`. Retorna o token de autenticação (JWT) caso a autenticação tenha ocorrido com sucesso.
+Realiza a autenticação do usuário junto ao servidor. Necessário o envio das credenciais do usuário no cabeçalho da requisição. Retorna o token de autenticação caso a autenticação tenha ocorrido com sucesso.
 
-* **Requisitos:**
+* **Requisitos:** 
 
-  Cabeçalho `Authorization: Basic <login:password>`, com `login:password` codificados em Base 64, na requisição.
+  Cabeçalho `Authorization: Basic <idUsuario:senha>`, com `idUsuario:senha` codificados em Base 64, na requisição.
 
 * **Código  de resposta de sucesso:**`200 OK`
 
@@ -171,75 +61,251 @@ Realiza a autenticação do usuário junto ao servidor. Necessário o envio do `
 
   ```json
   {
-  	"token":"eyJhbGciOiJIUzI1NiIs.eyJ1bmlxdWVfbmFtZSI6IlR.SmjuyXgloA2RUhIlAEetrQwfC0Eh"
+      "token": "7ba40d1a6034ac67a2805bfca21cbbf723d0311b"
   }
   ```
 
-* **Código de resposta de erro:**`401 UNAUTHORIZED`
+* **Código de resposta de erro:**`400 BAD REQUEST`
 
-  Autenticação não pode ser realizada.
+  1. Credenciais não enviadas no cabeçalho Authorization da Requisição.
+  * **Corpo da resposta:**
+
+    ```json
+  {
+        "error": "Credenciais não enviadas no cabeçalho Authorization"
+  }
+    ```
+  2. Formato de envio das credenciais não foi reconhecido.
+  * **Corpo da resposta:**
+
+    ```json
+  {
+        "error": "Formato das credenciais inválido. Correto - Base64(idUsuario:senha)"
+  }
+    ```
+* **Código de resposta de erro:**`404 NOT FOUND`
+
+	Usuário não encontrado.
 
 * **Corpo da resposta:**
 
   ```json
   {
-  	"error": "Usuário ou Senha inválidos ou inexistente"
+        "error": "idUsuario inválido ou inexistente"
+  }
+  ```
+  
+* **Código de resposta de erro:**`401 UNAUTHORIZED`
+  
+	Senha inválida.
+  
+* **Corpo da resposta:**
+  
+  ```json
+  {
+        "error": "senha inválida"
   }
   ```
 
-  
 
-#### PUT /users
 
-Executa a alteração do dados do usuário no servidor. O corpo da requisição deve conter todos os parâmetros do Usuário que deseja ser alterado em formato `application/json`. 
+***
+
+
+
+## 1. Usuário
+
+Gerenciar informações sobre o usuário e verificar informações dos demais usuários.
+
+Endpoint: **`/users`**
+
+#### POST /users
+
+Executa o registro de um novo usuário no servidor. O corpo da requisição contém todos os parâmetros do Usuário em formato `application/json`. Retorna também em formato `application/json ` os dados do Usuário recém criado.
 
 * **Requisitos:**
 
-  O atributo `id` é obrigatório no corpo da requisição.
+  Os seguintes atributos são obrigatórios no corpo da requisição:`idUsuario`, `nome`, `senha`, `data`, `genero`, `perfil`, `telefone` e `email` 	
+
+* **Corpo da requisição:**
+	
+  ```json
+  {
+	        "idUsuario": "idUsuario-2",
+	        "nome": "Usuario 2",
+	        "data": "1900-02-02",
+	        "genero": "Feminino",
+	        "pontos": 0,
+	        "telefone": "88888888",
+	        "senha": "senha",
+	        "email": "usuario2@bsc.com",
+	        "perfil": "Morador",
+	        "idCasa": 0,
+          "foto": null,
+          "token": null
+}
+	```
+	
+* **Código de resposta de sucesso:**`201 CREATED`
+
+  Usuário criado com sucesso.
+
+* **Corpo da resposta:**
+
+  ```json
+  {
+          "idUsuario": "idUsuario-2",
+          "nome": "Usuario 2",
+          "data": "1900-02-02",
+          "genero": "Feminino",
+          "pontos": 0,
+          "telefone": "88888888",
+          "senha": null,
+          "email": "usuario2@bsc.com",
+          "perfil": "Morador",
+	        "idCasa": 0,
+	        "foto": null,
+	        "token": null
+	}
+	```
+	
+* **Código de resposta de erro:**`400 BAD REQUEST`
+
+  Quando algum campo obrigatório não foi informado no corpo da solicitação. 
+
+* **Corpo da resposta:**
+
+  ```json
+  {
+      "error": "Atributos Obrigatórios - idUsuario, nome, senha, data, genero, ..."
+  }
+  ```
+
+* **Código de resposta de erro:**`409 CONFLICT`
+
+  Quando já existe um usuário com mesmo idUsuario registrado.
+
+* **Corpo da resposta:**
+
+  ```json
+  {
+  	"error": "Login já existe"
+  }
+  ```
+
+
+
+#### GET /users/{idUsuario}
+
+Recuperar as informações do(s) usuário(s) solicitado por {idUsuario} enviado como parâmetro da URL. Retorna os dados em formato `application/json`.
+
+* **Requisitos:**
+
+  Token de autenticação enviado no cabeçalho `token` da requisição.
+
+* **Código de resposta de sucesso:**`200 OK`
+
+  Usuário(s) encontrado(s).
+
+* **Corpo da resposta:**
+
+  ```json
+  [
+      {
+          "idUsuario": "idUsuario-1",
+          "nome": "Usuario 1",
+          "data": "1900-01-01",
+          "genero": "Masculino",
+          "pontos": 0,
+          "telefone": "9999999",
+          "senha": null,
+          "email": "usuario1@bsc.com",
+          "perfil": "Morador",
+          "idCasa": 0,
+          "foto": null,
+          "token": null
+      },
+      {
+          "idUsuario": "idUsuario-2",
+          "nome": "Usuario 2",
+          "data": "1900-02-02",
+          "genero": "Feminino",
+          "pontos": 0,
+          "telefone": "88888888",
+          "senha": null,
+          "email": "usuario2@bsc.com",
+          "perfil": "Morador",
+          "idCasa": 0,
+          "foto": null,
+          "token": null
+      }
+  ]
+  ```
+
+* **Código de resposta de erro:**`404 NOT FOUND`
+
+  Usuário(s) não encontrado(s) de acordo com idUsuario informado na URL da requisição.
+
+* **Corpo da resposta:**
+
+  ```json
+  {
+      "error": "Nenhum usuário encontrado"
+  }
+  ```
+* **Código de resposta de erro:**`405 METHOD NOT ALLOWED `
+
+  Nenhum parâmetro foi informado na URL
+
+#### PUT /users
+
+Executa a alteração dos dados do usuário no servidor. O corpo da requisição deve conter todos os parâmetros do Usuário que deseja ser alterado em formato `application/json`. 
+
+* **Requisitos:**
+
+  Token de autenticação enviado no cabeçalho `token` da requisição.
+
+  Os seguintes atributos são obrigatórios no corpo da requisição:`idUsuario`, `nome`, `data`, `genero`, `perfil`, `telefone` e `email`
 
 * **Corpo da requisição:**
 
   ```json
   {
-    "idUsuario": "felipe0",
-    "nome": "felipe",
-    "data": "1996-12-30",
-    "genero": "ddddddddddd",
-    "pontos": 0,
-    "telefone": "96485983",
-    "senha": "tuts",
-    "email": "xxx@hotmail.com",
-    "perfil": "com teto",
-    "idCasa": 0,
-    "foto": null
-}
+          "idUsuario": "idUsuario-1",
+          "nome": "Usuario 1",
+          "data": "1900-02-02",
+          "genero": "Feminino",
+          "telefone": "7777777",
+          "email": "usuario2@bsc.com",
+          "perfil": "Morador",
+              
+  }
   ```
 
 * **Código de resposta de sucesso:**`204 NO CONTENT`
 
   Usuário atualizado com sucesso. Sem corpo de resposta.
 
-* **Código de resposta de erro:**`404 NOT FOUND`
-
-  Usuário não encontrado.
-
-* **Corpo da resposta:**
-
-  ```json
-  {
-  	"error": "Usuário não encontrado"
-  }
-  ```
-  
 * **Código de resposta de erro:**`400 BAD REQUEST`
   
-  Atributo `id` não foi informado no corpo da requisição.
+  Quando algum campo obrigatório não foi informado no corpo da solicitação.
   
 * **Corpo da resposta:**
 
   ```json
   {
-  	"error": "Atributo id obrigatório"
+      "error": "Atributos Obrigatórios - idUsuario, nome, senha, data, genero, ..."
+  }
+  ```
+* **Código de resposta de erro:**`404 NOT FOUND`
+  
+  Quando ocorre algum erro na atualização do Usuário no Banco de Dados.
+  
+* **Corpo da resposta:**
+
+  ```json
+  {
+      "error": "Erro ao atualizar Usuário no Banco"
   }
   ```
 
