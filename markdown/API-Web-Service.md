@@ -119,6 +119,8 @@ Gerenciar informações sobre o usuário e verificar informações dos demais us
 
 Endpoint: **`/users`**
 
+
+
 #### POST /users
 
 Executa o registro de um novo usuário no servidor. O corpo da requisição contém todos os parâmetros do Usuário em formato `application/json`. Retorna também em formato `application/json ` os dados do Usuário recém criado.
@@ -241,6 +243,8 @@ Recuperar as informações do usuário solicitado por {idUsuario} enviado como p
 
   Nenhum parâmetro foi informado na URL
 
+
+
 #### GET /users/list/{idUsuario}
 
 Recuperar as informações de usuários com {idUsuario} parecidos. Retorna os dados em formato `application/json`.
@@ -302,6 +306,8 @@ Recuperar as informações de usuários com {idUsuario} parecidos. Retorna os da
 * **Código de resposta de erro:**`405 METHOD NOT ALLOWED `
 
   Nenhum parâmetro foi informado na URL
+
+
 
 #### PUT /users
 
@@ -370,7 +376,7 @@ Endpoint: **`/tasks`**
 
 #### GET /tasks/{estado}
 
-Recuperar as tarefas com status `aberta` relacionadas ao usuário autenticado e as tarefas com status `finalizada` da Casa para avaliação. Retorna uma lista de tarefas no formato `application/json`.
+Recuperar as tarefas relacionadas ao usuário autenticado com estado informado pelo parâmetro {estado} da URL. Retorna uma lista de tarefas no formato `application/json`.
 
 * **Requisitos:**
 
@@ -383,30 +389,32 @@ Recuperar as tarefas com status `aberta` relacionadas ao usuário autenticado e 
 	
   ```json
   [
-  	{
-  		"id":1,
-  		"task_name": "lavar louça",
-  		"description": "Lavar louça do almoço todos os dias",
-  		"user_id":1,
-  		"status":"aberta",
-  		"date_limit":"01/01/1900 23:23",
-  		"Pontos":60
-  	},
-  	{
-  		"id":2,
-  		"task_name": "recolher lixo",
-  		"description": "recolher lixo da casa",
-  		"status":"finalizada",
-  		"user_id":3,
-  		"date_limit":"01/01/1900 23:23",
-  		"Pontos":60
-  	}
-  ]
-  ```
-
+      {
+          "idTarefa": 32,
+          "nome": "Nome Tarefa 1",
+          "descricao": "Descricao tarefa 1",
+          "idResponsavel": "idUsuario-1",
+          "idRelator": "idUsuario-2",
+          "estado": "aberta",
+          "data": "1902-02-02",
+          "valor": 0
+      },
+      {
+          "idTarefa": 34,
+          "nome": "Nome Tarefa 3",
+          "descricao": "Descricao tarefa 3",
+          "idResponsavel": "idUsuario-1",
+          "idRelator": "idUsuario-1",
+          "estado": "aberta",
+          "data": "1902-02-02",
+          "valor": 0
+      }
+]
+	```
+	
 * **Código de resposta de erro:** `404 NOT FOUND`
 
-  Caso o usuário autenticado não possua nenhuma tarefa com status `aberta` ou não possuir nenhuma tarefa com status `finalizada` para avalização.
+  Caso o usuário autenticado não possua nenhuma tarefa com status com o estado informado no parâmetro da URL.
 
 * **Corpo da resposta:**
 
@@ -415,8 +423,11 @@ Recuperar as tarefas com status `aberta` relacionadas ao usuário autenticado e 
   	"error":"Nenhuma tarefa encontrada"
   }
   ```
+* **Código de resposta de erro:**`405 METHOD NOT ALLOWED `
 
-  
+  Nenhum parâmetro foi informado na URL
+
+
 
 #### POST /tasks
 
@@ -424,17 +435,20 @@ Executa o cadastro de uma nova tarefa no servidor. O corpo da requisição cont�
 
 * **Requisitos:**
 
-Os atributos `task_name` e `user_id` são obrigatórios no corpo da requisição.
+  Token de autenticação enviado no cabeçalho `token` da requisição.
+
+  Os seguintes atributos são obrigatórios no corpo da requisição:`nome`, `descricao`, `idResponsavel`, `estado`, `data` e `valor`.
 
 * **Corpo da requisição:**
 
   ```json
   {
-  	"task_name": "recolher lixo",
-  	"description": "recolher lixo da casa",
-  	"user_id":1,
-  	"date_limit":"01/01/1900 23:23",
-  	"Pontos":60
+      "nome": "Nome Tarefa 1",
+      "descricao": "Descricao tarefa 1",
+      "idResponsavel": "idUsuario-1",
+      "estado": "aberta",
+      "data": "1902-02-02",
+      "valor": 0
   }
   ```
 
@@ -446,13 +460,14 @@ Os atributos `task_name` e `user_id` são obrigatórios no corpo da requisição
 
   ```json
   {
-  	"id":5,
-  	"task_name": "recolher lixo",
-  	"description": "recolher lixo da casa",
-  	"status":"finalizada",
-  	"user_id":3,
-  	"date_limit":"01/01/1900 23:23",
-  	"Pontos":60
+      "idTarefa": 32,
+      "nome": "Nome Tarefa 1",
+      "descricao": "Descricao tarefa 1",
+      "idResponsavel": "idUsuario-1",
+      "idRelator": "idUsuario-2",
+      "estado": "aberta",
+      "data": "1902-02-02",
+      "valor": 0
   }
   ```
 
@@ -464,35 +479,44 @@ Os atributos `task_name` e `user_id` são obrigatórios no corpo da requisição
 
   ```json
   {
-  	"error": "Atributos Obrigatórios:task_name e user_id"
+      "error": "Atributos Obrigatórios - nome, descricao, data, valor, ..."
   }
   ```
 
+* **Código de resposta de erro:**`409 CONFLICT`
+
+  Caso não consiga criar a Tarefa no banco
+
+* **Corpo da resposta:**
+
+  ```json
+  {
+      "error": "Não foi possível criar a tarefa no banco. idResponsavel inválido"
+  }
+  ```
   
+
+
+
 #### PUT /tasks
 
-Executa a alteração dos dados tarefa no servidor. O corpo da requisição deve conter todos os parâmetros da tarefa que serão atualizado em formato `application/json`.
+Executa a alteração dos dados tarefa no servidor. O corpo da requisição deve conter todos os parâmetros da tarefa que serão atualizados em formato `application/json`.
 
 * **Requisitos:**
 
-  O atributo `id` da tarefa é obrigatório no corpo da requisição.
+  Token de autenticação enviado no cabeçalho `token` da requisição.
+
+  O atributo `idTarefa` é obrigatório no corpo da requisição.
 
 * **Corpo da requisição:**
 
   ```json
   {
-  	"id":5,
-  	"status":"finalizada",
-  	"Comentarios":
-  	[
-  		{
-  			"comentario1":"Tarefa bem realizada",
-  			"comentario2":"OK"
-  		}
-  	]
+      "idTarefa": 32,
+      "estado": "finalizada"
   }
   ```
-
+  
 * **Código de resposta de sucesso:**`204 NO CONTENT`
 
   Tarefa atualizada com sucesso. Sem corpo de resposta.
@@ -505,30 +529,60 @@ Executa a alteração dos dados tarefa no servidor. O corpo da requisição deve
 
   ```json
   {
-  	"error":"Tarefa não encontrada"
+  	"error":"A Tarefa não foi encontrada"
   }
   ```
+  
+* **Código de resposta de erro:**`409 CONFLICT`
 
-* **Código de resposta de erro:**`400 BAD REQUEST`
-
-  Atributo `id` não informado no corpo da requisição.
+  Não foi possível atualizar tarefa no banco.
 
 * **Corpo da resposta:**
 
   ```json
   {
-  	"error":"Atributo id obrigatório"
+  	"error":"Não foi possível atualizar tarefa no banco"
   }
   ```
 
+* **Código de resposta de erro:**`400 BAD REQUEST`
+
+  Atributo `idTarefa` não informado no corpo da requisição.
+
+* **Corpo da resposta:**
+
+  ```json
+  {
+  	"error":"Atributo idTarefa obrigatório"
+  }
+  ```
+  
+* **Código de resposta de erro:**`304 NOT MODIFIED`
+
+  Nenhum campo foi enviado para atualização. Sem corpo de resposta.
+  
+  
+
 ***
 
-## 3. Rotina
+
+
+## 3. Comentário
+
+Gerenciar as informações dos Comentários das tarefas
+
+Endpoint: **`/comments`**
+
+
+#### GET /comments/{idTarefa}
+
+Recuperar os comentários relacionados à tarefa informada como parâmetro {idTarefa} na URL da requisição. Retorna os dados dos comentários em formato `application/json`.
+
+## 4. Rotina
 
 Gerenciar informações das Rotinas do usuário
 
 Endpoint: **`/routines`**
-
 
 
 #### GET /routines
@@ -686,7 +740,7 @@ Executa a alteração do dados da rotina no servidor. Os atributos que irão ser
 
 
 
-## 4. Casa
+## 5. Casa
 
 Gerenciar informações da Casa
 
@@ -830,7 +884,7 @@ Executa a alteração do dados da Casa no servidor. O corpo da requisição deve
   ```
 
 ***
-## 5. Conta
+## 6. Conta
 
 Gerenciar informações da Conta do Usuário
 
@@ -932,7 +986,7 @@ Executa a alteração nas informações da Conta do Usuário. O corpo da requisi
 
 
 
-## 6. Regras
+## 7. Regras
 
 Gerenciar informações das Regras da Casa
 
