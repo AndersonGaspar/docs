@@ -197,7 +197,53 @@ Executa o registro de um novo usuário no servidor. O corpo da requisição cont
 
 #### GET /users/{idUsuario}
 
-Recuperar as informações do(s) usuário(s) solicitado por {idUsuario} enviado como parâmetro da URL. Retorna os dados em formato `application/json`.
+Recuperar as informações do usuário solicitado por {idUsuario} enviado como parâmetro da URL. Retorna os dados em formato `application/json`.
+
+* **Requisitos:**
+
+  Token de autenticação enviado no cabeçalho `token` da requisição.
+
+* **Código de resposta de sucesso:**`200 OK`
+
+  Usuário encontrado
+
+* **Corpo da resposta:**
+
+  ```json
+  {
+      "idUsuario": "idUsuario-1",
+      "nome": "Usuario 1",
+      "data": "1900-02-02",
+      "genero": "Feminino",
+      "pontos": 0,
+      "telefone": "777",
+      "senha": null,
+      "email": "usuario2@bsc.com",
+      "perfil": "morador",
+      "idCasa": 0,
+      "foto": null,
+      "token": null
+  }
+  ```
+  
+* **Código de resposta de erro:**`404 NOT FOUND`
+
+  Usuário não encontrado de acordo com idUsuario informado na URL da requisição.
+
+* **Corpo da resposta:**
+
+  ```json
+  {
+      "error": "Usuário não encontrado"
+  }
+  ```
+* **Código de resposta de erro:**`405 METHOD NOT ALLOWED `
+
+  Nenhum parâmetro foi informado na URL
+
+#### GET /users/list/{idUsuario}
+
+Recuperar as informações de usuários com {idUsuario} parecidos. Retorna os dados em formato `application/json`.
 
 * **Requisitos:**
 
@@ -322,7 +368,7 @@ Endpoint: **`/tasks`**
 
 
 
-#### GET /tasks
+#### GET /tasks/{estado}
 
 Recuperar as tarefas com status `aberta` relacionadas ao usuário autenticado e as tarefas com status `finalizada` da Casa para avaliação. Retorna uma lista de tarefas no formato `application/json`.
 
