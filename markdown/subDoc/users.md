@@ -30,8 +30,8 @@ Executa o registro de um novo usuário no servidor. O corpo da requisição cont
 	        "idCasa": 0,
           "foto": null,
           "token": null
-}
-```
+  }
+  ```
 	
 * **Código de resposta de sucesso:**`201 CREATED`
 
@@ -54,8 +54,8 @@ Executa o registro de um novo usuário no servidor. O corpo da requisição cont
 	        "foto": null,
 	        "token": null
 	}
-	```
-	
+  ```
+
 * **Código de resposta de erro:**`400 BAD REQUEST`
 
   Quando algum campo obrigatório não foi informado no corpo da solicitação. 
