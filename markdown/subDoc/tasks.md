@@ -42,7 +42,7 @@ Recuperar as tarefas relacionadas ao usuário autenticado com estado informado p
           "valor": 0
       }
 ]
-	```
+  ```
 	
 * **Código de resposta de erro:** `404 NOT FOUND`
 
