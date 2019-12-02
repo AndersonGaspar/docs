@@ -31,7 +31,7 @@ Executa o registro de um novo usuário no servidor. O corpo da requisição cont
           "foto": null,
           "token": null
 }
-	```
+```
 	
 * **Código de resposta de sucesso:**`201 CREATED`
 
