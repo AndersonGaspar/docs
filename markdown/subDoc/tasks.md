@@ -41,7 +41,7 @@ Recuperar as tarefas relacionadas ao usuário autenticado com estado informado p
           "data": "1902-02-02",
           "valor": 0
       }
-]
+  ]
   ```
 	
 * **Código de resposta de erro:** `404 NOT FOUND`
