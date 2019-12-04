@@ -214,7 +214,7 @@ Executa a alteração dos dados do usuário no servidor. O corpo da requisição
           "genero": "Feminino",
           "telefone": "7777777",
           "email": "usuario2@bsc.com",
-          "perfil": "Morador",
+          "perfil": "Morador"
               
   }
   ```
