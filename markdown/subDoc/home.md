@@ -6,9 +6,58 @@ Endpoint: **`/home`**
 
 
 
-#### GET /home/{name_home}
+#### GET /home/list/{nome ou endereço}
 
-Recuperar as informações da casa solicitada pelo parâmetro {name_home}. Retorna os dados em formato `application/json`.
+Recuperar as informações das casas que tenham o nome/endereço iguais ou parecidos ao parâmetro {nome ou endereço} informado na URL. Retorna os dados em formato `application/json`.
+
+* **Requisitos:**
+
+  Token de autenticação enviado no cabeçalho.
+
+* **Código de resposta de sucesso:**`200 OK`
+
+  Casa(s) encontrada(s).
+
+* **Corpo da resposta:**
+
+  ```json
+  [
+      {
+          "idCasa": 6,
+          "nome": "Casa 1",
+          "endereco": "rua da casa 1",
+          "aluguel": 500,
+          "descricao": "Casa com 2 garagens",
+          "foto": null
+      },
+      {
+          "idCasa": 7,
+          "nome": "Casa 2",
+          "endereco": "rua da casa 2",
+          "aluguel": 500,
+          "descricao": "Casa com 3 quartos",
+          "foto": null
+      }
+  ]
+  ```
+
+* **Código de resposta de erro:**`404 NOT FOUND`
+
+  Casa não encontrada de acordo com o parâmetro informado na URL da requisição.
+
+* **Corpo da resposta:**
+
+  ```Json
+  {
+      "error": "Nenhuma casa encontrada de acordo com o nome ou endereço informado"
+  }
+  ```
+
+
+
+#### GET /home/{idCasa}
+
+Recuperar as informações da casa com o idCasa igual ao parâmetro {idCasa} informado na URL. Retorna os dados em formato `application/json`.
 
 * **Requisitos:**
 
@@ -22,15 +71,15 @@ Recuperar as informações da casa solicitada pelo parâmetro {name_home}. Retor
 
   ```json
   {
-  	"id":1,
-  	"home_name": "Casa 1",
-  	"address": "Endereço",
-  	"responsavel":"name",
-  	"aluguel":200,
-  	"foto":"foto.png"
-  } 
+      "idCasa": 7,
+      "nome": "Casa 2",
+      "endereco": "rua da casa 2",
+      "aluguel": 500,
+      "descricao": "Casa com 3 quartos",
+      "foto": null
+  }
   ```
-
+  
 * **Código de resposta de erro:**`404 NOT FOUND`
 
   Casa não encontrada de acordo com o parâmetro informado na URL da requisição.
@@ -39,28 +88,35 @@ Recuperar as informações da casa solicitada pelo parâmetro {name_home}. Retor
 
   ```Json
   {
-  	"error":"Rotina não encontrada"
+      "error": "Nenhuma casa encontrada de acordo com o id informado"
   }
   ```
 
+* **Código de resposta de erro:**`405 METHOD NOT ALLOWED `
+
+  Nenhum parâmetro foi informado na URL
   
+  
+
 #### POST /home
 
 Executa o cadastro de uma nova Casa no servidor. O corpo da requisição contém todos os parâmetros para cadastro da Casa em formato `application/json`. Retorna os dados em formado `json` da Casa cadastrada.
 
 * **Requisitos:**
 
-  Os seguintes atributos são obrigatórios no corpo da requisição: `home_name`, `address`, `responsavel` e `aluguel`.
+  Token de autenticação enviado no cabeçalho.
+
+  Os seguintes atributos são obrigatórios no corpo da requisição: `nome`, `endereco`, `aluguel` e `descricao`.
 
 * **Corpo da requisição:**
 
   ```json
   {
-  	"home_name": "Casa 2",
-  	"address": "Endereço 2",
-  	"responsavel":"name",
-  	"aluguel":200,
-  	"foto":"foto.png"
+      "nome": "Casa 2",
+      "endereco": "rua da casa 2",
+      "aluguel": 500,
+      "descricao": "Casa com 3 quartos",
+      "foto": null
   }
   ```
 
@@ -72,12 +128,12 @@ Executa o cadastro de uma nova Casa no servidor. O corpo da requisição contém
 
   ```json
   {
-  	"id":2,
-  	"home_name": "Casa 2",
-  	"address": "Endereço",
-  	"responsavel":"name",
-  	"aluguel":200,
-  	"foto":"foto.png"
+      "idCasa": 7,
+      "nome": "Casa 2",
+      "endereco": "rua da casa 2",
+      "aluguel": 500,
+      "descricao": "Casa com 3 quartos",
+      "foto": null
   }
   ```
 
@@ -89,11 +145,24 @@ Executa o cadastro de uma nova Casa no servidor. O corpo da requisição contém
 
   ```json
   {
-  	"error":"Atributos obrigatórios - home_name, address, responsavel e aluguel"
+      "error": "Atributos Obrigatórios - nome, endereco, descricao e aluguel"
   }
   ```
 
+* **Código de resposta de erro:**`409 CONFLICT`
+
+  Erro ao criar Casa no banco.
+
+* **Corpo da resposta:**
+
+  ```json
+  {
+      "error": "Não foi possível criar a Casa no banco de dados"
+  }
+  ```
   
+
+
 
 #### PUT /home
 
@@ -101,18 +170,18 @@ Executa a alteração do dados da Casa no servidor. O corpo da requisição deve
 
 * **Requisitos:**
 
-  É obrigatório o envio do atributo `id` no corpo da requisição.
+  Token de autenticação enviado no cabeçalho.
+
+  É obrigatório o envio do atributo `idCasa` no corpo da requisição.
 
 * **Corpo da requisição:**
   ```json 
   {
-  	"id":1,
-  	"home_name": "Casa 1",
-  	"aluguel":300,
-  	"foto":"foto.png"
+      "idCasa": 7,
+      "nome": "Nova Casa 2",
   }
   ```
-
+  
 * **Código de resposta de sucesso:**`204 NO CONTENT`
 
   Casa atualizada com sucesso. Sem corpo de resposta.
@@ -125,7 +194,7 @@ Executa a alteração do dados da Casa no servidor. O corpo da requisição deve
 
   ```json
   {
-  	"error":"Casa não encontrada"
+  	"error":"A casa informada não foi encontrada"
   }
   ```
 
@@ -137,6 +206,17 @@ Executa a alteração do dados da Casa no servidor. O corpo da requisição deve
 
   ```json
   {
-  	"error":"Atributo id obrigatório"
+  	"error":"Atributos idCasa é obrigatório"
+  }
+  ```
+* **Código de resposta de erro:**`409 CONFLICT`
+
+  Erro ao atualizar Casa no banco.
+
+* **Corpo da resposta:**
+
+  ```json
+  {
+      "error": "Não foi possível atualizar a Casa no banco de dados"
   }
   ```
