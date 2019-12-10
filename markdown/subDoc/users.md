@@ -50,10 +50,10 @@ Executa o registro de um novo usuário no servidor. O corpo da requisição cont
           "senha": null,
           "email": "usuario2@bsc.com",
           "perfil": "Morador",
-	        "idCasa": 0,
-	        "foto": null,
-	        "token": null
-	}
+	  "idCasa": 0,
+	  "foto": null,
+	  "token": null
+  }
   ```
 
 * **Código de resposta de erro:**`400 BAD REQUEST`
@@ -85,7 +85,6 @@ Executa o registro de um novo usuário no servidor. O corpo da requisição cont
 #### GET /users/{idUsuario}
 
 Recuperar as informações do usuário solicitado por {idUsuario} enviado como parâmetro da URL. Retorna os dados em formato `application/json`.
-
 * **Requisitos:**
 
   Token de autenticação enviado no cabeçalho `token` da requisição.
@@ -128,6 +127,64 @@ Recuperar as informações do usuário solicitado por {idUsuario} enviado como p
 
   Nenhum parâmetro foi informado na URL
 
+
+#### GET /users/home
+
+Retornas os Usuários da mesma casa do que o Usuário do token. Retorna os dados em formato `application/json`.
+* **Requisitos:**
+
+  Token de autenticação enviado no cabeçalho `token` da requisição.
+
+* **Código de resposta de sucesso:**`200 OK`
+
+  Usuário(s) encontrado(s)
+
+* **Corpo da resposta:**
+
+  ```json
+  [
+    {
+        "idUsuario": "idUsuario-1",
+        "nome": "Usuario 1",
+        "data": "1900-02-02",
+        "genero": "Masculino",
+        "pontos": 0,
+        "telefone": "7777777",
+        "senha": null,
+        "email": "usuario2@bsc.com",
+        "perfil": "Morador",
+        "idCasa": 2,
+        "foto": null,
+        "token": null
+    },
+    {
+        "idUsuario": "idUsuario-2",
+        "nome": "Usuario 2",
+        "data": "1900-02-02",
+        "genero": "Masculino",
+        "pontos": 0,
+        "telefone": "777",
+        "senha": null,
+        "email": "usuario2@bsc.com",
+        "perfil": "responsavel",
+        "idCasa": 2,
+        "foto": null,
+        "token": null
+    }
+  ]
+  ```
+  
+* **Código de resposta de erro:**`404 NOT FOUND`
+
+  Usuário do token não está em nenhuma casa.
+
+* **Corpo da resposta:**
+
+  ```json
+  {
+      "error": "Usuário não está associado a uma casa"
+  }
+  ```
 
 
 #### GET /users/list/{idUsuario}
