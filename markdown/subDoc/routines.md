@@ -57,6 +57,7 @@ Recuperar as rotinas relacionadas ao usuário autenticado. Retorna os dados em f
 Executa o cadastro de uma nova rotina no servidor. O corpo da requisição contém todos os parâmetros da rotina em formato `application/json`. Retorna os dados da Rotina recém criada.
 
 * **Requisitos:**
+
   Token de autenticação enviado no cabeçalho.
   Atributos `nome`, `descricao` e `validade` são obrigatórios no corpo da requisição
 
