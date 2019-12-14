@@ -20,24 +20,22 @@ Recuperar as rotinas relacionadas ao usuário autenticado. Retorna os dados em f
 * **Corpo da resposta:**
   ```json
   [
-  	{
-  		"id":1,
-  		"routine_name": "Rotina 1",
-  		"description": "Descrição da rotina",
-  		"days":"seg,ter,qui",
-  		"hour_limit":"23:23",
-  		"responsavel":"alternar",
-  		"date_val":"01/01/2000"
-  	},
-  	{
-  		"id":2,
-  		"routine_name": "Rotina 2",
-  		"description": "Descrição da rotina 2",
-  		"days":"seg,sex",
-  		"hour_limit":"23:23",
-  		"responsavel":"todos",
-  		"date_val":"01/01/2000"
-  	}
+    {
+        "idRotina": 1,
+        "validade": "2019-11-20",
+        "alternar": false,
+        "nome": "Rotina 1",
+        "descricao": "Descrição da rotina 1",
+        "idUsuario": "idUsuario-1"
+    },
+    {
+        "idRotina": 3,
+        "validade": "2019-11-20",
+        "alternar": true,
+        "nome": "Rotina 2",
+        "descricao": "Descrição da rotina 2",
+        "idUsuario": "idUsuario-1"
+    }
   ]
   ```
 
@@ -56,22 +54,20 @@ Recuperar as rotinas relacionadas ao usuário autenticado. Retorna os dados em f
   
 #### POST /routines
 
-Executa o cadastro de uma nova rotina no servidor. O corpo da requisição contém todos os parâmetros da rotina em formato `application/json`. Retorna os dados da Rotina recem criada.
+Executa o cadastro de uma nova rotina no servidor. O corpo da requisição contém todos os parâmetros da rotina em formato `application/json`. Retorna os dados da Rotina recém criada.
 
 * **Requisitos:**
-
-  Atributo `routine_name` é obrigatório no corpo da requisição
+  Token de autenticação enviado no cabeçalho.
+  Atributos `nome`, `descricao` e `validade` são obrigatórios no corpo da requisição
 
 * **Corpo da requisição:**
 
   ```json
   {
-  	"routine_name": "Rotina 2",
-  	"description": "Descrição da rotina 2",
-  	"days":"seg,sex",
-  	"hour_limit":"23:23",
-  	"responsavel":"todos",
-  	"date_val":"01/01/2000"
+	"nome": "Rotina 2",
+	"descricao": "Descrição da rotina 2",
+	"validade":"2019-11-20",
+	"alternar" : true
   }
   ```
 
@@ -83,75 +79,35 @@ Executa o cadastro de uma nova rotina no servidor. O corpo da requisição cont�
 
   ```json
   {
-  	"id":3,
-  	"routine_name": "Rotina 2",
-  	"description": "Descrição da rotina 2",
-  	"days":"seg,sex",
-  	"hour_limit":"23:23",
-  	"responsavel":"todos",
-  	"date_val":"01/01/2000"
+    "idRotina": 3,
+    "validade": "2019-11-20",
+    "alternar": true,
+    "nome": "Rotina 2",
+    "descricao": "Descrição da rotina 2",
+    "idUsuario": "idUsuario-1"
   }
   ```
 
 * **Código de resposta de erro:**`400 BAD REQUEST`
 
-  Se o atributo obrigatório não for enviado no corpo da requisição.
+  Se os atributos obrigatórios não forem enviados no corpo da requisição.
 
 * **Corpo da resposta:**
 
   ```
   {
-  	"error" : "Atributo routine_name obrigatório"
-  }
-  ```
-
-  
-#### PUT /routines
-
-Executa a alteração do dados da rotina no servidor. Os atributos que irão ser atualizados devem ser enviados no corpo da requisição em formato `application/json`. 
-
-* **Requisitos:**
-
-  Atributo `id` da rotina é obrigatório no corpo da requisição.
-
-* **Corpo da requisição:**
-
-  ```json
-  {
-  	"id":2,
-  	"routine_name": "Rotina 2",
-  	"description": "Descrição da rotina 2",
-  	"days":"seg,sex",
-  	"hour_limit":"23:23",
-  	"responsavel":"todos",
-  	"date_val":"01/01/2000"
+  	"error" : "Atributos Obrigatórios - nome, descricao e validade"
   }
   ```
   
-* **Código de resposta de sucesso:**`204 NO CONTENT`
+* **Código de resposta de erro:**`409 CONFLICT`
 
-  Rotina atualizada com sucesso. Sem corpo de resposta.
-
-* **Código de resposta de erro:**`404 NOT FOUND`
-
-  Rotina não encontrada para atualização.
+  Não foi possível criar a Rotina no banco de dados
 
 * **Corpo da resposta:**
 
-  ```json
-  {
-  	"error":"Rotina não encontrada"
-  }
   ```
-
-* **Código de resposta de erro:**`400 BAD REQUEST`
-
-  Atributo `id` da rotina não informado no corpo da requisição.
-
-* **Corpo da resposta:**
-
-  ```json
   {
-  	"error":"Atributo id obrigatório"
+  	"error" : "Não foi possível criar a Rotina no banco de dados"
   }
   ```
