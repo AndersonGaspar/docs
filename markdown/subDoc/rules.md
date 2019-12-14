@@ -22,7 +22,7 @@ Recuperar as regras da Casa do usuário autenticado. Retorna os dados em formato
 
   ```json
   [
-  	{
+    {
         "idRegra": 5,
         "nome": "Regra-1",
         "descricao": "Descrição Regra 1",
@@ -56,11 +56,11 @@ Recuperar as regras da Casa do usuário autenticado. Retorna os dados em formato
   	"error":"Nenhuma regra encontrada"
   }
   ```
- * **Código de resposta de erro:**`400 BAD REQUEST`
+* **Código de resposta de erro:**`400 BAD REQUEST`
 
   Usuário autenticado não possui casa registrada em seu perfil
 
- * **Corpo da resposta:**
+* **Corpo da resposta:**
 
   ```Json
   {
@@ -73,6 +73,7 @@ Recuperar as regras da Casa do usuário autenticado. Retorna os dados em formato
 Executa o cadastro de uma nova regra na Casa. O corpo da requisição contém todos os parâmetros para cadastro da Regra em formato `application/json`. Retorna os dados em formado `json` da nova Regra cadastrada.
 
 * **Requisitos:**
+
   Token de autenticação enviado no cabeçalho da requisição.
   Os seguintes atributos são obrigatórios no corpo da requisição: `nome`, `descricao` e `data`.
 
@@ -118,11 +119,11 @@ Executa o cadastro de uma nova regra na Casa. O corpo da requisição contém to
   }
   ```
   
- * **Código de resposta de erro:**`409 CONFLICT`
+* **Código de resposta de erro:**`409 CONFLICT`
 
   Não foi possível cadastrar regra no banco de dados
 
- * **Corpo da resposta:**
+* **Corpo da resposta:**
 
   ```json
   {
@@ -136,6 +137,7 @@ Executa o cadastro de uma nova regra na Casa. O corpo da requisição contém to
 Executa a alteração nas informações das regras da Casa. O corpo da requisição contém todos os parâmetros para alteração em formato `application/json`. 
 
 * **Requisitos:**
+  
   Token de autenticação enviado no cabeçalho da requisição.
   O atributo `idRegra` é obrigatório no corpo da requisição.
 
