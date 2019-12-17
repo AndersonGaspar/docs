@@ -10,5 +10,5 @@ Home Tasks project documentation
 5. [Prototipagem das telas.](./markdown/Telas-do-app.md)
 6. [API REST do Web Service.](./markdown/API-Web-Service.md)
 7. [Diagrama de Classes Servidor.](./markdown/Diagrama-de-Classes-Servidor.md)
-7. [Diagrama Banco de dados.](images/ht_bcd.png)
-8. [Termo de conclusão.] (./markdown/Termo-de-abertura.md)
+8. [Diagrama Banco de dados.](images/ht_bcd.png)
+9. [Termo de conclusão](./markdown/Termo-de-abertura.md)
