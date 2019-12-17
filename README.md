@@ -11,4 +11,4 @@ Home Tasks project documentation
 6. [API REST do Web Service.](./markdown/API-Web-Service.md)
 7. [Diagrama de Classes Servidor.](./markdown/Diagrama-de-Classes-Servidor.md)
 7. [Diagrama Banco de dados.](images/ht_bcd.png)
-
+8. [Termo de conclusão.] (./markdown/Termo-de-abertura.md)
